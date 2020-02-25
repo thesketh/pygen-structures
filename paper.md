@@ -7,11 +7,11 @@ tags:
   - molecular dynamics
 authors:
  - name: Travis Hesketh
- - orcid: 0000-0002-0502-9596
- - affiliation: 1
+   orcid: 0000-0002-0502-9596
+   affiliation: 1
 affiliations:
  - name: University of Strathclyde
- - index: 1
+   index: 1
 date: 28 February 2020
 bibliography: paper.bib
 ---
