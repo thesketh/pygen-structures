@@ -94,11 +94,12 @@ END
 
 The level of annotation is greater, but hydrogen atom positions are not added (were these to be added using `Chem.AddHs`, they would be incorrectly annotated) and the atom names do not match the CHARMM atom names exactly (though they do follow the standard PDB naming conventions, so it would be trivial to correct them). psfgen is capable of assigning the positions of hydrogen atoms and setting the correct charge states, so this approach works reasonably well for simple L-amino sequences. It is, however, nontrivial to generate mixtures of D and L amino acids, as acid chirality is set using a flag argument to `Chem.MolFromSequence`.
 
-With `pygen-structures`, it is easily possible to generate the structures of free amino acids, peptides, or more complex structures such as polysacchirides and glycans, in an automated fashion. A significant advantage is that the use of psfgen to generate the PSF file is also avoided. This greatly simplifies combinatorial searches of small molecule sequences.
+With `pygen-structures`, it is easily possible to generate the structures of free amino acids, peptides, or more complex structures such as glycans and glycopeptides, in an automated fashion. A significant advantage is that it is no longer necessary to use psfgen to generate the PSF file. This greatly simplifies combinatorial searches of small molecule sequences.
 
 ```python
->>> from pygen-structures import code_to_mol, sequence_to_mol, load_charmm_dir
->>> rtf, prm = load_charmm_dir('toppar')
+>>> from pygen_structures import code_to_mol, sequence_to_mol, load_charmm_dir
+>>> ## pygen_structures is distributed with the CHARMM35/36 files.
+>>> rtf, prm = load_charmm_dir()
 >>> mol = code_to_mol('AdAF', rtf)  # L-alanine, D-alanine, L-phenylalanine
 >>> print(mol.to_pdb_block())
 COMPND    AdAF
@@ -131,7 +132,7 @@ ATOM      5  H5  AGLC    1       1.185  -1.104  -0.707  1.00  0.00      RAFF H
 PSF CMAP
 
          2 !NTITLE
-* Generated procedurally using pygen-structures.
+* Generated procedurally using pygen-structures v0.2.
 * Molecule: Raffinose
 
       66 !NATOM
@@ -143,7 +144,7 @@ PSF CMAP
 <truncated>
 ```
 
-A downside to this approach is that knowledge of the available CHARMM residues and the required patches is necessary, but this is true of psfgen as well. Some initial work is always required to discover whether CHARMM can represent a molecule of interest. This could be improved through use of automated pattern matching from provided structures, but is challenging due to the nature of X-ray crystal data.
+A downside to this approach is that knowledge of the available CHARMM residues and the required patches is necessary, but this is true of psfgen as well. Some initial work is always required to discover whether CHARMM can represent a molecule of interest. This could be improved through use of automated pattern matching from provided structures, but is challenging due to the incomplete nature of X-ray crystal data.
 
 ## Future Work
 
@@ -155,11 +156,13 @@ Further documentation, including a writeup of the types of polymeric structures 
 
 ## Dependencies
 
-`pygen-structures` depends upon the RDKit for 3D coordinate generation and uses NumPy for representations of the molecular adjacency matrix. Integration tests and unit tests (using the Python standard library) are supplied to test the functionality provided by the package.
+`pygen-structures` depends upon the RDKit for 3D coordinate generation and uses NumPy for representations of the molecular adjacency matrix. Unit tests (using the Python standard library) are supplied to test the functionality provided by the package. Tests can be run using `from pygen-structures import tests; tests.run()`.
+
+Any modern Python 3 version should be supported, and pip can be used for installation: `pip install pygen-structures`
 
 # Acknowledgements
 
-TH thanks the Strathclyde Computational and Theoretical Chemistry Hub (SCoTCH) at the University of Strathclyde for helpful conversations and enthusiasm, and those that are working to increase recognition of software in research.
+TH thanks the Strathclyde Computational and Theoretical Chemistry Hub (SCoTCH) at the University of Strathclyde for helpful conversations and enthusiasm, and those that are working to increase recognition of research software engineers.
 
 MarvinSketch was used for 3D coordinate generation in "Problems with Current Workflows", MarvinSketch 20.3, ChemAxon (https://www.chemaxon.com).
 

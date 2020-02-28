@@ -1,0 +1,60 @@
+Toppar change log
+
+All files in the toppar subdirectory that are included in the final
+release (eg. files in toppar_jul16/toppar) will be maintained in the
+Michigan GIT.  The procedure will allow for the files to be maintained
+locally at UMB and then uploaded into the git repository prior to new
+releases of CHARMM.  This will assure consistency with the UM Git.
+Information on performing the process is in the MacKerell lab wiki.
+
+http://mackerell.umaryland.edu/pmwiki/pmwiki.php?n=Main.CharmmGitRepositoryAtUMich
+
+ls -R toppar/* > toppar_files_umb.list' from the local /raid/alex/param/toppar_jul18
+
+and
+
+'ls -R toppar/* > toppar_files_git.list' from the local /raid/alex/charmm/code/charmm_git
+
+!Diff to identify files to add to or rename in Michigan Git
+
+diff toppar_files_umb.list ../../charmm/code/charmm_git/toppar_files_git.list
+< toppar_all36_lipid_ether.str
+168,169c167
+< toppar_all36_prot_c36_d_aminoacids.str
+< toppar_all36_prot_c36m_d_aminoacids.str
+---
+> toppar_all36_prot_d_aminoacids.str
+
+> toppar_all36_prot_mod_d_aminoacids.str
+
+#commands to perform in /raid/alex/charmm/code/charmm_git PRIOR to copying "cp -r ../../../param/toppar_jul18/toppar ."
+
+#make sure everything is up to date prior to making changes.
+git pull
+
+git mv toppar/stream/prot/toppar_all36_prot_d_aminoacids.str toppar/stream/prot/toppar_all36_prot_c36_d_aminoacids.str
+git mv toppar/stream/prot/toppar_all36_prot_mod_d_aminoacids.str toppar/stream/prot/toppar_all36_prot_c36m_d_aminoacids.str
+
+cp -r ../../../param/toppar_jul18/toppar .
+
+#add new file
+git add toppar/stream/lipid/toppar_all36_lipid_ether.str
+#add updated files 
+git add toppar/drude/drude_toppar_2017_7.tgz
+git add toppar/par_all36_cgenff.prm
+git add toppar/stream/lipid/toppar_all36_lipid_list.str
+git add toppar/stream/lipid/toppar_all36_lipid_model.str
+git add toppar/stream/na/toppar_all36_na_reactive_rna.str
+git add toppar/stream/na/toppar_all36_na_modifications.str
+git add toppar/stream/prot/toppar_all36_prot_c36_d_aminoacids.str
+git add toppar/stream/prot/toppar_all36_prot_modify_res.str
+git add toppar/top_all36_prot.rtf
+git add toppar/toppar_all.history
+
+git status
+
+git commit -a -m "2017 to 2018 charmm toppar updates.  see toppar_all.history for details"
+
+git push origin master
+
+###

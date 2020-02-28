@@ -1,0 +1,277 @@
+`Toppar change log
+
+All files in the toppar subdirectory that are included in the final
+release (eg. files in toppar_jul16/toppar) will be maintained in the
+Michigan GIT.  The procedure will allow for the files to be maintained
+locally at UMB and then uploaded into the git repository prior to new
+releases of CHARMM.Information on performing the process is in the
+MacKerell lab wiki.  
+
+http://mackerell.umaryland.edu/pmwiki/pmwiki.php?n=Main.CharmmGitRepositoryAtUMich
+
+see 00git_information.txt for details of exact commands used to
+upload files into the git repository.
+
+1) Proteins
+
+1a) Added residues for phosphorylated Tyr (TPA), Thr (TPO) and Ser (SEP) to
+toppar_all36_prot_na_combined.str
+
+1b) par_all36_prot.prm and par_all36m_prot.prmL following angle and dihedral
+parameter for neutral termini added.  All parameters based on analogy
+
+NH2  CT1  CT2A  67.700    110.00              ! From LSN NH2-CT2-CT2
+NH2  CT1  CD    50.000    107.00              ! From ALA Dipep. NH1-CT2-C
+NH2  CT2  CD    50.000    107.00              ! From ALA Dipep. NH1-CT2-C, Neutral Gly Nterminus
+
+NH2  CT1  C    O        0.0000  1     0.00
+NH2  CT2  C    N        0.0000  1     0.00   ! NNEU
+NH2  CT1  CT2A HA2      0.2000  3     0.00 ! From X    CT1  CT2  X
+H    NH2  CT1  CD       0.0000  1     0.00
+H    NH2  CT2  CD       0.0000  1     0.00   ! Neutral Gly Nterminus
+H    NH2  CT1  CT2A     0.1100  3     0.00   ! From LSN HC-NH2-CT2-CT2
+CC   CT2A CT1  NH2      0.6800  1   180.00   ! From CC   CT2A CT1  NH1
+CC   CT2A CT1  NH2      0.1000  2   180.00
+CC   CT2A CT1  NH2      0.3800  3     0.00
+CD   CT1  CT2A CC       1.6100  1   180.00   ! From C    CT1  CT2A CC
+CD   CT1  CT2A CC       1.2900  2   180.00
+CD   CT1  CT2A CC       0.5900  3   180.00
+
+1c) top_all36_prot.prm: In PRES CNEU atom name HT2 changed to HT2B to
+avoid conflict with PRES NNEU.
+
+1d) Residues and patches for methylhistidine have been created for both
+the neutral and charged states. The new terms have been added to
+toppar_all36_prot_modify_res.str.
+
+! Full residues that may be used when a full protein is being generate
+  and the appropriate residues have been renamed as follows.
+
+RESI HIC: neutral methylhistidine
+RESI HICP: charged methylhistdine
+
+! Patches to convert standard CHARMM histidine residues to
+  methylhistidine. Its necessary to apply the correct patch to the
+  appropriate parent residue.
+
+PRES MHSE: convert HSE to methylhistidine
+PRES MHSD: convert HSD to methylhistidine (methyl still NE2 atom)
+PRES MHSP: converg HSP to protonated methylhistidine
+
+see /raid/alex/param/toppar_jul18/new_prot/methylhistidine
+
+
+2) Carbohydrates
+
+2a) Added toppar_all36_carb_lignin.str into the stream/carb
+subdirectory. These contain the Lignin parameters from Vermaas et al.
+Test case added: test_all36_carb_lignin.inp
+
+!references
+!
+!Vermaas et al., "Systematic parameterization of lignin for the CHARMM
+!force field, " Green Chemistry 21: 109, 2019, DOI: 10.1039/c8gc03209b
+!
+!Vermaas et al., "Automated Transformation of Lignin Topologies into
+!Atomic Structures with LigninBuilder," ACS Sustainable
+!Chem. Eng. 7:3443, 2019, DOI: 10.1021/acssuschemeng.8b05665
+
+2b) par_all36_carb.prm: Additional optimization of N-acetyl group
+dihedral parameters.  Leads to improved treatment of N-acetyl
+conformational sampling in GlcNAC, GalNAC and Neu5NAC.
+
+2c) Miscellaneous parameters added by analogy.
+
+OC302   CC3162  CC3161  NC2D1    0.20  3    0.0 ! par27 X CTL1 CTL1 X
+
+3) Lipids
+
+2a) TMA-aromatic group cation-pi interaction parameters 
+
+toppar_all36_lipid_cationpi_wyf.str added to stream/lipid
+
+!reference Khan, MacKerell, Jr., and Reuter, "Cation-π Interactions
+!between Methylated Ammonium Groups and Tryptophan in the CHARMM36
+!Additive Force Field," J. Chem. Theory Comput. 2019, 15, 1, 7-12,
+!DOI: 10.1021/acs.jctc.8b00839
+
+4) CGenFF: 2018-2019 changes to CGenFF to version 4.3
+
+4a) New residues added
+RESI NC2       1.000 ! dimethylammonium  fylin/kenno
+RESI NC3       1.000 ! trimethylammonium  fylin/kenno
+RESI NH4       1.000 ! ammonium fylin/kenno
+RESI TEAZ      0.000 ! C1H2N4, 1H-tetrazole  pchat
+RESI MTEA      0.000 ! C2H4N4, 5-Methyl-1H-tetrazole pchat
+RESI ETEA      0.000 ! C3H6N4, 5-Ethyl-1H-tetrazole pchat
+RESI 2OXT      0.000 ! 2-Oxetanone ozyo
+RESI 3OXT      0.000 ! 3-Oxetanone ozyo
+RESI BUTY      0.000 ! 1-butyne pchat
+RESI PNTY      0.000 ! 1-pentyne pchat
+RESI HXYN      0.000 ! 1-hexyne pchat
+RESI HPTY      0.000 ! 1-heptyne pchat
+RESI OCTY      0.000 ! 1-octyne pchat
+RESI BEYN      0.000 ! But-1-ene-3-yne pchat
+RESI PRF       1.000 ! (2-amino-4-oxo-1,7-dihydropyrrolo[2,3-d]pyrimidin-5-yl)methylazanium ; ashal
+
+4b) NBFIX terms added for halogen-protein interations. Important for
+halogenated ligand-protein interacions.  Analogous parameters added
+for carbohydrates, lipids, and nucleic acids.
+
+Lin, F.-Y. and MacKerell Jr., A.D., “Improved Modeling of Halogenated
+Ligand-Protein Interactions using the Drude Polarizable and CHARMM
+Additive Empirical Force Fields,” JCIM, 59: 215-218, 2019,
+10.1021/acs.jcim.8b00616, PMC6349471
+
+4c) Reorganization of both the topology	and parameter files to allow
+for integration of the release files with those used to train the
+CGenFF program.  This will facilitate training of the CGenFF program
+in the future as well as assure that the release and CGenFF program
+based parameter files are consistent.  This included a couple minor
+changes in partial atomic changes.  This will make the charges in the
+topology file consistent with those output by the CGenFF program.
+
+Version 4.3 of top_all36_cgenff.rtf and par_all36_cgenff.prm is
+synchronized with Version 2.3 of the CGenFF program.
+
+4d) Improper atom order correction
+RESI GUAN 
+RESI MGUA
+Minor charge changes in CH2 or CH3 groups
+RESI GLYN
+RESI MAMM
+RESI EAMM
+RESI METO
+RESI ETO
+
+5) Water-ion toppar file
+
+5a) Calcium NBFixes added: 2019-8
+CAL    CLA      -0.134164   3.727 ! from J. Phys. Chem. B 2018, 122, 1484−1494
+CAL    O2L      -0.12       3.256 ! from J. Phys. Chem. B 2018, 122, 1484−1494
+CAL    OC2DP    -0.12       3.256 ! from J. Phys. Chem. B 2018, 122, 1484−1494
+CAL    OG2P1    -0.12       3.256 ! from J. Phys. Chem. B 2018, 122, 1484−1494
+!
+CAL    OCL      -0.12       3.232 ! Rong Shen and Benoit Roux, personal communication
+CAL    OC       -0.12       3.232 ! Rong Shen and Benoit Roux, personal communication
+CAL    OC2D2    -0.12       3.232 ! Rong Shen and Benoit Roux, personal communication
+CAL    OG2D2    -0.12       3.232 ! Rong Shen and Benoit Roux, personal communication
+
+5b) added hydrogen peroxide (h2o2) rtf and parameters
+
+ see https://pubs.acs.org/doi/10.1021/acs.jctc.8b00246
+
+6) Toppar test cases in test subdirectory updated: 2019_7
+
+test case input file restructured to read all toppar files by each
+test case as listed in ./toppar.str. This allows dependencies between
+the various toppar files to be taken into account.  This leads to
+issues with overlapping residues/patch names that required a few
+renaming of residues and patches (see below). Those changed were on
+residues/patches that are rarely used and therefore will not impact
+the large majority of users.
+
+One problem with this is that the test cases run significantly slower
+due to the reading of all the toppar files by each job.
+
+toppar_all36_na_modifications.str
+change name of residue CYTP to CYPR
+RESI CYPR         1.00  ! To Protonate C5-Me CYT at N3, edarian 2009-03, previously CYTP
+                        !avoid clash with PRES CYTP in toppar_all36_na_rna_modified.str
+
+toppar_all36_prot_na_combined.str
+change name of patch THP2 to THPB
+PRES THPB        -2.00  ! convert threonine to dianionic phosphothreonine
+                        ! use in a patch statement, previously THP2
+
+toppar_all36_prot_model.str
+change name of residue from TP2 to TP2Z
+RESI TP2Z        1.00 ! prolineamide, R. Dunbrack, previously TP2
+
+toppar_all36_prot_pyridines.str
+change name of residue from PYR1 to PYRE
+RESI PYRE        0.00 ! pyridine, previously PYR1
+
+toppar_all36_carb_lignin.str
+change name of patch from AOG to AOG1
+PRES AOG1 0.00 ! alpha to gamma ester linkage, formally AOG
+
+7) Addition of UIUC ion NBFIX parameters in non_charmm/toppar_ions_nbfix_uiuc.str
+
+toppar_ions_nbfix_uiuc.str: Contains a variety of NBFIX terms
+optimized by Yoo and Aksimentiev, Univ of Illinois,
+Urbana-Charmpaign. See the file for the approprate references.  As
+these conflict with some of he defaul CHARMM36 additive NBFIX terms
+they have not been included with the default toppar files. Note that
+these are not tested.
+
+8) Below is the list of Im lab changes and additions.
+
+Done	1. toppar_water_ions.str: changes already in UMB file
+		=95 NBFIX for Ca2+ ion
+		=95 NBFIX for pyrophosphate (related to #9)
+
+Done	2. toppar_all36_lipid_detergent.str: new lipid LPPG added to test case
+		=95 Bug fix: charge for DDAOP
+		=95 New lipids: STIG, SITO, LPPG, TSPC: only LPPG in the new toppar_all36_lipid_detergent.str
+
+Done	3. toppar_all36_prot_d_aminoacids.str: also added to all36m version
+		=95 Missing parameters for D-amino acids
+			=95 CT1  NH1  C    CTD1     1.6000  1     0.00
+			=95 CT1  NH1  C    CTD1     2.5000  2   180.00
+
+Done	4. toppar_all36_carb_imlab.str: test case updated
+		=95 Bug fix: 2ANA/2BNA patches for P. aeruginosa
+		=95 Bug fix: IC table for 6TPEAP
+		=95 Bug fix: IC table for DPHG / DPHGA
+		=95 Bug fix: missing parameters for GPI
+		=95 Update: 2ANSF / 2BNSF patches
+		=95 New patch: FP17BT for BGALF 1->7 AHEP linkage: test case updated
+                alex: patch name changes: sa24bb to sa24ab and SA25BA to SA25AA
+                alex: patch name changes: SA28BT to SA28AT
+
+Done	5. toppar_all36_lipid_model.str (was already changed)
+		=95 Change residue name GLYP =97> GLPH
+
+Done	6. top_all36_prot.rtf (was already changed)
+		=95 Change patch name CTP =97> PCTE
+
+Done	7. toppar_all36_lipid_lps.str: control characters in old version, test case updated
+		=95 New lipid A: ECLIPB
+		=95 New lipid A: ECLIPC
+
+Done	8. toppar_all36_na_nad_ppi.str
+		=95 Bug fix: ACCE entry for ATP, GTP, CTP, TTP, and UTP
+
+Done	9. [NEW] toppar_all36_lipid_pyrophosphate.str: residues and parameters added to toppar_all36_lipid_miscellaneous.str
+		=95 Pyrophosphate lipids (DOPP1, DOPP2, DOPP3, POPP1, POPP2, POPP3)
+                alex: required moving MASS/NONBOND for atom types P3 and P4 to parent na toppar files from toppar_all36_na_nad_ppi.str
+
+Done	10. toppar_all36_lipid_bacterial.str: test case updated
+		=95 New lipid: DPPGK
+
+Done	11. gbsw/radius_gbsw.str: The full gbsw directory replaced the gbsw in toppar_jul18. I don't support this and as Wonpil is the gbsw guy I assume that the new versions are correct.
+		=95 HSE radii is added
+
+Done	12. [NEW] toppar_all36_lipid_ether.str (from Dr. Klauda): test case updated
+		=95 Ether lipids (DHPCE, POPCE, DOPCE, DMPCE, POPEE, DOPEE, DPPEE, DMPEE)
+
+Done	13. drude/toppar_drude_master_protein_2013f.str
+		=95 Bug fix: typo in element - MASS    -1 OD30E 15.99900 0
+                alex: correction made in drude_toppar_2018_10.tgz version of files to be included with new toppar_jul19
+
+Done	14. toppar_all36_lipid_sphingo.str: test case updated
+		=95 New lipid: CER3E
+
+Done	15. toppar_all36_lipid_cholesterol.str: test case updated
+		=95 New lipids: CHSD, CHSP
+
+Done	16. toppar_all36_lipid_miscellaneous.str: test case updated
+		=95 New lipids: DDOPC, DDOPE, DDOPS, PDOPC, PDOPE
+
+Done	17. par_all36_prot.prm / par_all36m_prot.prm: already added
+		=95 Bug fix: missing parameter for NNEU (NH2  CT2  C    N)
+                alex: NH2  CT2  C    N        0.0000  1     0.00   ! NNEU
+
+Done    Not in Jumin's original list: toppar_all36_prot_stapling.str
+                alex: all patches and parameters added to toppar_all36_prot_modify_res.str and corresponding test case updated.
