@@ -333,7 +333,7 @@ class Molecule:
                 n_per_item = len(data[0])
             except (ValueError, IndexError, AttributeError):
                 return ""
-            format_string = " ".join([" {:7d}" for _ in range(n_per_item)])
+            format_string = "".join(["{:10d}" for _ in range(n_per_item)])
             lines = []
             for index, item in enumerate(data):
                 if not index % n_per_line:
@@ -347,7 +347,7 @@ class Molecule:
                     lines[-1] = "".join(lines[-1])
             return "\n".join(lines) + "\n"
 
-        doc_title = ["PSF CMAP", ""]
+        doc_title = ["PSF EXT CMAP XPLOR", ""]
         header_records = [
             "* Generated procedurally by pygen-structures v{}".format(
                 version
@@ -357,22 +357,22 @@ class Molecule:
         ]
         for top_file in self.topology_files:
             header_records.append("* - {}".format(top_file))
-        doc_title.append(" {:>7} !NTITLE".format(len(header_records)))
+        doc_title.append("{:>10} !NTITLE".format(len(header_records)))
         header = "\n".join(doc_title + header_records) + "\n"
 
         adjacency_matrix = self._structure.adjacency_matrix
         bonds, angles, dihedrals = adjacency_to_dof(adjacency_matrix)
-        atom_head = " {:7d} !NATOM".format(len(self.atoms))
+        atom_head = "{:10d} !NATOM".format(len(self.atoms))
         atom_block = "".join([atom.to_psf_line() for atom in self.atoms])
-        bond_head = " {:7d} !NBOND: bonds".format(len(bonds))
+        bond_head = "{:10d} !NBOND: bonds".format(len(bonds))
         bond_block = format_psf_block(bonds, n_per_line=4)
-        angle_head = " {:7d} !NTHETA: angles".format(len(angles))
+        angle_head = "{:10d} !NTHETA: angles".format(len(angles))
         angle_block = format_psf_block(angles, n_per_line=3)
-        dihedral_head = " {:7d} !NPHI: dihedrals".format(len(dihedrals))
+        dihedral_head = "{:10d} !NPHI: dihedrals".format(len(dihedrals))
         dihedral_block = format_psf_block(dihedrals, n_per_line=2)
-        improper_head = " {:7d} !NIMPHI: impropers".format(len(self.impropers))
+        improper_head = "{:10d} !NIMPHI: impropers".format(len(self.impropers))
         improper_block = format_psf_block(self.impropers, n_per_line=2)
-        cmap_head = " {:7d} !NCRTERM: cross-terms".format(len(self.cross_maps))
+        cmap_head = "{:10d} !NCRTERM: cross-terms".format(len(self.cross_maps))
         cmap_block = format_psf_block(self.cross_maps, n_per_line=1)
 
         psf_blocks = [

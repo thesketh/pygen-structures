@@ -136,13 +136,10 @@ class Atom:
         """
         Create a PDB formatted atom record from the ``Atom``. The fields
         are described in the class docstring.
-
-        Where residue numbers exceed the 4 character limit, these are
-        wrapped around to 0.
         """
         format_string = (
-            " {: 7d} {:<4.4s} {:<4d} {:<4.4s} {:<4.4s} {:<4.4s}  {: 8.6f}"
-            "      {:8.4f}           0\n"
+            "{:10d} {:<8s} {:<8d} {:<8s} {:<8s} {:<6s} {: 10.6f} "
+            "{:13.4f}           0\n"
         )
 
         atom_string = format_string.format(
