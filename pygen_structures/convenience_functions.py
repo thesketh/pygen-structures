@@ -182,8 +182,8 @@ def code_to_mol(
         first, sequence, last = sequence.split('-')
         if patches is None:
             patches = {}
-        patches[first] = "FIRST"
-        patches[last] = "LAST"
+        patches[first] = ["FIRST"]
+        patches[last] = ["LAST"]
     except ValueError:
         pass
     residue_names = []
