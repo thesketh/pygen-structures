@@ -156,7 +156,9 @@ Further documentation, including a writeup of the types of polymeric structures 
 
 ## Dependencies
 
-`pygen-structures` depends upon the RDKit for 3D coordinate generation and uses NumPy for representations of the molecular adjacency matrix. Unit tests (using the Python standard library) are supplied to test the functionality provided by the package. Tests can be run using `from pygen-structures import tests; tests.run()`.
+`pygen-structures` depends upon the RDKit for 3D coordinate generation and uses NumPy for representations of the molecular adjacency matrix.
+
+Limited unit and integration tests (using _pytest_) are supplied to test the functionality provided by the package. Tests can be run using `pytest --pyargs pygen_structures`. Tests rely upon _OpenMM_ as an additional dependency.
 
 Any modern Python 3 version should be supported, and pip can be used for installation: `pip install pygen-structures`
 

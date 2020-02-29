@@ -362,18 +362,45 @@ class Molecule:
 
         adjacency_matrix = self._structure.adjacency_matrix
         bonds, angles, dihedrals = adjacency_to_dof(adjacency_matrix)
+
         atom_head = "{:10d} !NATOM".format(len(self.atoms))
         atom_block = "".join([atom.to_psf_line() for atom in self.atoms])
+
         bond_head = "{:10d} !NBOND: bonds".format(len(bonds))
         bond_block = format_psf_block(bonds, n_per_line=4)
+
         angle_head = "{:10d} !NTHETA: angles".format(len(angles))
         angle_block = format_psf_block(angles, n_per_line=3)
+
         dihedral_head = "{:10d} !NPHI: dihedrals".format(len(dihedrals))
-        dihedral_block = format_psf_block(dihedrals, n_per_line=2)
+        dihedral_block = "\n"
+        if dihedrals:
+            dihedral_block = format_psf_block(dihedrals, n_per_line=2)
+
         improper_head = "{:10d} !NIMPHI: impropers".format(len(self.impropers))
-        improper_block = format_psf_block(self.impropers, n_per_line=2)
+        improper_block = "\n"
+        if self.impropers:
+            improper_block = format_psf_block(self.impropers, n_per_line=2)
+
+        ndon_block = "         0 !NDON: donors\n\n"
+        nacc_block = "         0 !NACC: acceptors\n\n"
+
+        nnb_head = "         0 !NNB\n"
+        nnb_block = []
+        for index in range(len(self.atoms)):
+            if index == 0:
+                continue
+            if not index % 8:
+                nnb_block.append("{:10d}".format(0) * 8)
+        remaining_atoms = len(self.atoms) % 8
+        if remaining_atoms:
+            nnb_block.append("{:10d}".format(0) * remaining_atoms)
+        nnb_block = "\n".join(nnb_block) + "\n"
+
         cmap_head = "{:10d} !NCRTERM: cross-terms".format(len(self.cross_maps))
-        cmap_block = format_psf_block(self.cross_maps, n_per_line=1)
+        cmap_block = "\n"
+        if self.cross_maps:
+            cmap_block = format_psf_block(self.cross_maps, n_per_line=1)
 
         psf_blocks = [
             header,
@@ -387,6 +414,10 @@ class Molecule:
             dihedral_block,
             improper_head,
             improper_block,
+            ndon_block,
+            nacc_block,
+            nnb_head,
+            nnb_block,
             cmap_head,
             cmap_block,
         ]

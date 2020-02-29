@@ -52,10 +52,10 @@ class CHARMMResidueDefinition(CHARMMResidueData):
     records
     :param cross_maps: lists of tuples of 8 ``atom_name`` from CMAP\
     records
-    :param ics: tuple of information present in IC records. The first\
+    :param ics: list of information present in IC records. The first\
     4 items are ``atom_name``, the last 5 are floats containing bond\
     length/angle information. Where angle i-j-k-l is an improper,\
-    the third ``atom_name`` is prefaced with "\*".\
+    the third ``atom_name`` is prefaced with "*".\
     The floats are:\
     the bond length, i-j\
     the angle, i-j-k\
@@ -403,10 +403,10 @@ class CHARMMPatchResidueDefinition(CHARMMResidueData):
     :param cross_maps:  an ``n_residues`` long list of lists containing\
     tuples of 8 atom references from CMAP records
     :param ics:  an ``n_residues`` long list of lists containing\
-    tuples of information present in IC records.\
+    lists of information present in IC records.\
     The first 4 items are atom references, the last 5 are floats\
     containing bond and angle information. Where angle i-j-k-l is an\
-    improper, the third atom name is prefaced with "\*".\
+    improper, the third atom name is prefaced with "*".\
     \
     The floats are:\
     the bond length, i-j\
