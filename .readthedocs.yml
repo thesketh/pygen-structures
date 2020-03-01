@@ -1,0 +1,10 @@
+version: 2
+
+sphinx:
+  configuration: doc/conf.py
+
+conda:
+  environment.yml
+
+submodules:
+  exclude: test

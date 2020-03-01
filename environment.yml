@@ -1,0 +1,6 @@
+name: pygen_structures
+channels:
+  - rdkit
+dependencies:
+  - rdkit
+  - numpy
