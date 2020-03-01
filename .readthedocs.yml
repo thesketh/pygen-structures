@@ -7,4 +7,5 @@ conda:
   environment: environment.yml
 
 submodules:
-  exclude: test
+  exclude:
+    - test
