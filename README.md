@@ -38,4 +38,4 @@ D-amino acids need only be preceded with a lowercase d. In one letter code mode,
 pygen-structures NNEU-AdFK-CTER -o AdFK
 ```
 
-When output is not specified, the PDB file is written directly to stdout.
+When output is not specified, the PDB file is written directly to stdout. Information about classes and functions for usage as a library can be found on [the project's ReadtheDocs page](https://pygen-structures.readthedocs.io/en/latest/).
