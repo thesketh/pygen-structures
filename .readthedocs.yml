@@ -4,7 +4,7 @@ sphinx:
   configuration: doc/conf.py
 
 conda:
-  environment.yml
+  environment: environment.yml
 
 submodules:
   exclude: test
