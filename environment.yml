@@ -2,5 +2,5 @@ name: pygen_structures
 channels:
   - rdkit
 dependencies:
-  - rdkit
+  - rdkit>=2018.03
   - numpy

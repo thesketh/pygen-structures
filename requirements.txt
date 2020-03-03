@@ -1,2 +1,2 @@
-rdkit
+rdkit>=2018.03
 numpy
