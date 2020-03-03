@@ -10,15 +10,15 @@ The package can be used as a command line utility, or as a Python library.
 
 ## Command line usage
 
-Command line usage for peptides is incredibly simple, and takes the following form:
+Command line usage for peptides is simple, and takes the following form:
 
 ```
 pygen-structures SEQUENCE -o OUTPUT_PREFIX
 ```
 
-Sequences are specified using the one letter protein code, and terminal patches can be supplied by using hyphens as delimiters (e.g. `NNEU-AFK-CT2`, note that both termini must be supplied). OUTPUT_PREFIX.psf and OUTPUT_PREFIX.pdb are created. If the output prefix is not specified, the PDB file is written to stdout and no PSF file is generated. D-amino acids need only be preceded by a lowercase d.
+Sequences are specified using the one letter protein code, and terminal patches can be supplied by using hyphens as delimiters (e.g. `NNEU-AFK-CT2`, note that both termini must be supplied). OUTPUT_PREFIX.psf and OUTPUT_PREFIX.pdb are created. If the output prefix is not specified, the PDB file is written to stdout and no PSF file is generated. D-amino acids need only be preceded by a lowercase 'd'. The histidine form used can be set using `--histidine`, and defaults to HSE. Patches can be supplied using `--patches`, the name of the patch, and the 0-based indices the patch is to be applied to (or 'FIRST'/'LAST').
 
-To generate more complex structures, such as sugars, the residue names should be supplied (hyphen delimited) and the `-u`/`--use-charmm-names` option selected. `--name` and `--segid` control the names given in the COMPND record and the segment id respectively. For raffinose:
+To generate more complex structures, such as sugars, the residue names should be supplied (hyphen delimited) and the `-u`/`--use-charmm-names` option selected. `--name` and `--segid` control the names given in the COMPND record and the segment id respectively. For the trisaccharide raffinose, the following command would be used:
 
 ```
 pygen-structures --use-charmm-names AGLC-BFRU-AGAL --patches RAFF 0 1 2 --segid RAFF --name Raffinose -o RAFF
@@ -31,4 +31,3 @@ Information about classes and functions for usage as a library can be found on [
 ## Running tests
 
 To run the tests using pytest, run the following command in the shell: `pytest --pyargs pygen_structures`. `python -m pytest --pyargs pygen_structures` should also work.
-When output is not specified, the PDB file is written directly to stdout.
