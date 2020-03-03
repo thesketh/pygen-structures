@@ -1,8 +1,8 @@
-# pygen-structures
+# pygen-structures [![Documentation Status](https://readthedocs.org/projects/pygen-structures/badge/?version=latest)](https://pygen-structures.readthedocs.io/en/latest/?badge=latest)[![Build Status](https://travis-ci.org/thesketh/pygen-structures.svg?branch=master)](https://travis-ci.org/thesketh/pygen-structures)
 
 `pygen-structures` (pigeon structures) is a Python utility which allows for the generation of 3 dimensional molecular structures which can be used in molecular dynamics or Monte Carlo simulations. Molecules are generated from a list of residues and patches in the format of the CHARMM forcefield, and can be written out as valid PSF and PDB files.
 
-The package can be installed using pip (`pip install pygen-structures`), but relies upon _RDKit_, which must be installed using the [conda package manager](https://docs.conda.io/projects/conda/en/latest/) (`conda install -c rdkit rdkit`). _numpy_ is an additional dependency, and both _pytest_ and _OpenMM_ are required to run all the tests.
+The package can be installed using pip (`pip install pygen-structures`), but relies upon _RDKit_, which must be installed using the [conda package manager](https://docs.conda.io/projects/conda/en/latest/) (`conda install -c rdkit rdkit`). _numpy_ is an additional dependency, and both _pytest_ and _OpenMM_ are required to run all the tests. Python 3.6 and 3.7 are supported.
 
 In essence, `pygen-structures` aims (eventually) to be a complete [psfgen](https://www.ks.uiuc.edu/Research/vmd/plugins/psfgen/) replacement with more autonomous functionality and without the necessity for an initial 3D structure. This should make it significantly easier to perform combinatorial searches on particular sequence lengths and linkages, requiring no manual intervention provided the molecules of interest are reasonably small and the residue/patch definitions already exist in the forcefield.
 
