@@ -1,0 +1,4 @@
+[run]
+omit =
+    pygen_structures/test/*
+    pygen_structures/_typing.py
