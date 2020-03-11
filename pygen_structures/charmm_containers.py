@@ -172,6 +172,7 @@ class CHARMMResidueDefinition(CHARMMResidueData):
 
         :param index: the ``residue_index`` of the created residue.
         :return: the created residue
+        :rtype: CHARMMResidue
 
         """
         return CHARMMResidue.from_residue_definition(self, index)
@@ -709,7 +710,19 @@ class CHARMMPatchResidueDefinition(CHARMMResidueData):
                     del residue.ics[deletion_index]
                 residue.ics.append(ic)
 
-    def is_applicable_to(self, residue):
+    def is_applicable_to(self, residue) -> Union[None, List[int]]:
+        """
+        Work out the positions where the patch can be applied to the
+        residue. If the patch can be applied, return a list of
+        positions where the patch can be applied, otherwise return
+        ``None``.
+
+        :param residue: The ``CHARMMResidue`` the patch is to be\
+        applied to
+        :return: A list of indices where the residue could be supplied\
+        to the patch, if applicable. Otherwise ``None``.
+
+        """
         deletions = set()
         split_deletions = [set() for _ in range(self.n_residues)]
         for (placeholder_index, atom_name) in self.deletions:
@@ -762,11 +775,15 @@ class CHARMMResidueTopologyFile:
         self.first = first
         self.last = last
 
-    def add_residue_definition(self, residue: CHARMMResidueDefinition):
+    def add_residue_definition(
+            self,
+            residue: CHARMMResidueDefinition
+        ) -> None:
         """
         Add a ``CHARMMResidueDefinition`` to the residues
 
         :param residue: a ``CHARMMResidueDefinition``
+
         """
         if not residue.first:
             residue.first = self.first
@@ -775,16 +792,24 @@ class CHARMMResidueTopologyFile:
         name = residue.name
         self.residues[name] = residue
 
-    def add_patch_definition(self, patch: CHARMMPatchResidueDefinition):
+    def add_patch_definition(
+            self,
+            patch: CHARMMPatchResidueDefinition
+        ) -> None:
         """
         Add a ``CHARMMPatchResidueDefinition`` to the patches
 
         :param patch: a ``CHARMMPatchResidueDefinition``
+
         """
         name = patch.name
         self.patches[name] = patch
 
-    def read_file(self, rtf_path, update_default_patches=False):
+    def read_file(
+            self,
+            rtf_path: str,
+            update_default_patches=False
+        ) -> None:
         """
         Read in a CHARMM RTF (or STR) file and add the patches and
         residues, updating the default patches if requested.
@@ -843,7 +868,7 @@ class CHARMMResidueTopologyFile:
             self.add_patch_definition(patch)
 
     @classmethod
-    def from_file(cls, rtf_path):
+    def from_file(cls, rtf_path: str):
         """
         Instantiate the class from a CHARMM RTF file.
 

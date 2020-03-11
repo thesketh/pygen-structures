@@ -180,7 +180,7 @@ class Structure:
             atom.y = position.y
             atom.z = position.z
 
-    def reorder_atoms(self):
+    def reorder_atoms(self) -> None:
         """
         Reorder the atoms and adjacency matrix to put the hydrogen
         atoms after their parent heavy atom. This is probably an easier

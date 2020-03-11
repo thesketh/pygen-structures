@@ -257,7 +257,7 @@ class Molecule:
                 cross_maps.append([self._id_to_index[x] for x in cross_map])
         self.impropers, self.cross_maps = impropers, cross_maps
 
-    def get_adjacency_matrix(self):
+    def get_adjacency_matrix(self) -> np.ndarray:
         return self._structure.adjacency_matrix
 
     def get_conect_records(self) -> List[str]:
@@ -305,7 +305,7 @@ class Molecule:
         conect_block = "".join(conect_records)
         return header_block + atom_block + conect_block + master + "END\n"
 
-    def to_pdb_file(self, pdb_path: str):
+    def to_pdb_file(self, pdb_path: str) -> None:
         """
         Write the molecule to a PDB file.
 
@@ -423,7 +423,7 @@ class Molecule:
         ]
         return "\n".join(psf_blocks) + "\n"
 
-    def to_psf_file(self, psf_path):
+    def to_psf_file(self, psf_path) -> None:
         """
         Write the molecule to a PSF file.
 
