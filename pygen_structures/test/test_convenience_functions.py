@@ -1,5 +1,6 @@
 import os
 import pickle
+import warnings
 from pygen_structures import(
     load_charmm_dir,
     code_to_mol,
@@ -114,7 +115,9 @@ def test_pdb_to_mol():
     ref_molecule = code_to_mol(code, RTF)
     ref_molecule.to_pdb_file('AF.pdb')
 
-    molecule = pdb_to_mol('AF.pdb', RTF)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        molecule = pdb_to_mol('AF.pdb', RTF)
     os.remove('AF.pdb')
 
     for residue, ref_residue in zip(molecule.residues, ref_molecule.residues):
