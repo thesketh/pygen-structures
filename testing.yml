@@ -1,0 +1,11 @@
+name: pygen_structures
+channels:
+  - rdkit
+  - omnia
+dependencies:
+  - rdkit>=2018.03
+  - numpy
+  - openmm>=7.4
+  - pytest
+  - pytest-cov
+  - codecov
