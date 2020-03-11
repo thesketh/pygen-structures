@@ -5,7 +5,7 @@ data.
 # from __future__ import annotations
 import re
 import os
-from typing import Tuple, List, Dict, Set
+from typing import Tuple, List, Dict, Set, Union
 
 from pygen_structures.mol_containers.atom import Atom
 from pygen_structures.mol_containers.structure import Structure
