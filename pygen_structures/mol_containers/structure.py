@@ -38,7 +38,7 @@ class Structure:
         self.adjacency_matrix = bonds_to_adjacency(bonds)
         self.bonds = bonds
         if not fixed_atoms:
-            fixed_atoms = dict()
+            fixed_atoms = list()
         self.fixed_atoms = fixed_atoms
         if not improper_ics:
             improper_ics = dict()
