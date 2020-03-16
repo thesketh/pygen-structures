@@ -93,8 +93,8 @@ def pdb_to_mol(
                 if atom.chain not in (kept_chain, " ", ""):
                     continue
                 elif atom.residue_name not in rtf.residues:
-                    print(atom.residue_name)
-                    continue
+                    err = "Unrecognised residue {}".format(atom.residue_name)
+                    raise ValueError(err)
                 if atom.residue_number != last_residue:
                     residue_serial += 1
                     last_residue = atom.residue_number

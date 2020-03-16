@@ -821,9 +821,9 @@ class CHARMMResidueTopologyFile:
         """
         with open(rtf_path) as rtf_file:
             contents = rtf_file.read()
-        if os.path.split(rtf_path)[-1] == ".str":
+        if os.path.splitext(rtf_path)[-1] == ".str":
             try:
-                contents = re.findall("(?si)(.+?)READ PARA.*", contents)[0]
+                contents = re.findall("(?smi)(^READ RTF.*?^END)", contents)[0]
             except IndexError:
                 return
         rtf_file_name = os.path.split(rtf_path)[1]
@@ -936,7 +936,7 @@ class CHARMMParameterFile:
             contents = prm_file.read()
         if os.path.splitext(prm_path)[-1] == ".str":
             try:
-                contents = re.findall("(?si)READ PARA.*?\n(.+)", contents)[0]
+                contents = re.findall("(?smi)(^READ PARA.*?^END)", contents)[0]
             except IndexError:
                 return
         contents = contents.split('\n')
