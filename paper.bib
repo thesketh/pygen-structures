@@ -1,4 +1,4 @@
-]
+
 @article{Brunger1993,
   title = {Computational Challenges for Macromolecular Structure Determination by {{X}}-Ray Crystallography and Solution {{NMRspectroscopy}}},
   author = {Brünger, Axel T. and Nilges, Michael},
@@ -11,7 +11,7 @@
   url = {https://www.cambridge.org/core/journals/quarterly-reviews-of-biophysics/article/computational-challenges-for-macromolecular-structure-determination-by-xray-crystallography-and-solution-nmrspectroscopy/1EF4F138E8B6A1BC6924766F36BC52F6},
   urldate = {2020-02-25},
   abstract = {Macromolecular structure determination by X-ray crystallography and solution NMR spectroscopy has experienced unprecedented growth during the past decade.},
-  file = {/users/gvb14176/Zotero/storage/S99DQX2X/Brünger and Nilges - 1993 - Computational challenges for macromolecular struct.pdf;/users/gvb14176/Zotero/storage/GCJG2ZE5/1EF4F138E8B6A1BC6924766F36BC52F6.html},
+  file = {/home/travis/Zotero/storage/S99DQX2X/Brünger and Nilges - 1993 - Computational challenges for macromolecular struct.pdf;/home/travis/Zotero/storage/GCJG2ZE5/1EF4F138E8B6A1BC6924766F36BC52F6.html},
   langid = {english},
   number = {1}
 }
@@ -33,6 +33,45 @@
   number = {25}
 }
 
+@article{numpy,
+  title = {The {{NumPy Array}}: {{A Structure}} for {{Efficient Numerical Computation}}},
+  shorttitle = {The {{NumPy Array}}},
+  author = {van der Walt, Stefan and Colbert, S. Chris and Varoquaux, Gael},
+  date = {2011-03},
+  journaltitle = {Computing in Science Engineering},
+  volume = {13},
+  pages = {22--30},
+  issn = {1558-366X},
+  doi = {10.1109/MCSE.2011.37},
+  abstract = {In the Python world, NumPy arrays are the standard representation for numerical data and enable efficient implementation of numerical computations in a high-level language. As this effort shows, NumPy performance can be improved through three techniques: vectorizing calculations, avoiding copying data in memory, and minimizing operation counts.},
+  file = {/home/travis/Zotero/storage/S92DK667/van der Walt et al. - 2011 - The NumPy Array A Structure for Efficient Numeric.pdf},
+  keywords = {Arrays,Computational efficiency,data structures,Finite element methods,high level language,high level languages,mathematics computing,numerical analysis,Numerical analysis,numerical computation,numerical computations,numerical data,NumPy,numpy array,Performance evaluation,programming libraries,Python,Python programming language,Resource management,scientific programming,Vector quantization},
+  note = {Conference Name: Computing in Science Engineering},
+  number = {2},
+  options = {useprefix=true}
+}
+
+@article{openmm,
+  title = {{{OpenMM}} 7: {{Rapid}} Development of High Performance Algorithms for Molecular Dynamics},
+  shorttitle = {{{OpenMM}} 7},
+  author = {Eastman, Peter and Swails, Jason and Chodera, John D. and McGibbon, Robert T. and Zhao, Yutong and Beauchamp, Kyle A. and Wang, Lee-Ping and Simmonett, Andrew C. and Harrigan, Matthew P. and Stern, Chaya D. and Wiewiora, Rafal P. and Brooks, Bernard R. and Pande, Vijay S.},
+  date = {2017-07-26},
+  journaltitle = {PLOS Computational Biology},
+  shortjournal = {PLOS Computational Biology},
+  volume = {13},
+  pages = {e1005659},
+  publisher = {{Public Library of Science}},
+  issn = {1553-7358},
+  doi = {10.1371/journal.pcbi.1005659},
+  url = {https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005659},
+  urldate = {2020-03-16},
+  abstract = {OpenMM is a molecular dynamics simulation toolkit with a unique focus on extensibility. It allows users to easily add new features, including forces with novel functional forms, new integration algorithms, and new simulation protocols. Those features automatically work on all supported hardware types (including both CPUs and GPUs) and perform well on all of them. In many cases they require minimal coding, just a mathematical description of the desired function. They also require no modification to OpenMM itself and can be distributed independently of OpenMM. This makes it an ideal tool for researchers developing new simulation methods, and also allows those new methods to be immediately available to the larger community.},
+  file = {/home/travis/Zotero/storage/9AZAWGEF/Eastman et al. - 2017 - OpenMM 7 Rapid development of high performance al.pdf},
+  keywords = {Algorithms,Amoebas,Biochemical simulations,Molecular dynamics,Monte Carlo method,Programming languages,Simulation and modeling,Source code},
+  langid = {english},
+  number = {7}
+}
+
 @online{psfgen,
   title = {{{VMD}} Psfgen {{Plugin}}, {{Version}} 2.0},
   shorttitle = {Psfgen},
@@ -42,10 +81,16 @@
   urldate = {2020-02-25}
 }
 
-@online{rdkit,
+@article{pytest,
+  title = {Pytest 5.0},
+  author = {Krekel, Holger and Oliveira, Bruno and Pfannschmidt, Ronny and Bruynooghe, Floris and Laugher, Brianna and Bruhin, Florian},
+  date = {2004},
+  url = {https://github.com/pytest-dev/pytest}
+}
+
+@misc{rdkit,
   title = {{{RDKit}}: {{Open}}-{{Source Cheminformatics Software}}},
   shorttitle = {{{RDKit}}},
-  date = {2020},
   url = {https://www.rdkit.org/},
   urldate = {2020-02-25}
 }
@@ -61,7 +106,7 @@
   issn = {15205142},
   doi = {10.1021/acs.jcim.5b00654},
   abstract = {Small organic molecules are often flexible, i.e., they can adopt a variety of low-energy conformations in solution that exist in equilibrium with each other. Two main search strategies are used to generate representative conformational ensembles for molecules: systematic and stochastic. In the first approach, each rotatable bond is sampled systematically in discrete intervals, limiting its use to molecules with a small number of rotatable bonds. Stochastic methods, on the other hand, sample the conformational space of a molecule randomly and can thus be applied to more flexible molecules. Different methods employ different degrees of experimental data for conformer generation. So-called knowledge-based methods use predefined libraries of torsional angles and ring conformations. In the distance geometry approach, on the other hand, a smaller amount of empirical information is used, i.e., ideal bond lengths, ideal bond angles, and a few ideal torsional angles. Distance geometry is a computationally fast method to generate conformers, but it has the downside that purely distance-based constraints tend to lead to distorted aromatic rings and sp2 centers. To correct this, the resulting conformations are often minimized with a force field, adding computational complexity and run time. Here we present an alternative strategy that combines the distance geometry approach with experimental torsion-angle preferences obtained from small-molecule crystallographic data. The torsional angles are described by a previously developed set of hierarchically structured SMARTS patterns. The new approach is implemented in the open-source cheminformatics library RDKit, and its performance is assessed by comparing the diversity of the generated ensemble and the ability to reproduce crystal conformations taken from the crystal structures of small molecules and protein-ligand complexes.},
-  file = {/users/gvb14176/Zotero/storage/K3H3P4D8/Riniker, Landrum - 2015 - Better Informed Distance Geometry Using What We Know to Improve Conformation Generation.pdf},
+  file = {/home/travis/Zotero/storage/K3H3P4D8/Riniker, Landrum - 2015 - Better Informed Distance Geometry Using What We Know to Improve Conformation Generation.pdf},
   number = {12}
 }
 

@@ -10,7 +10,7 @@ authors:
    orcid: 0000-0002-0502-9596
    affiliation: 1
 affiliations:
- - name: University of Strathclyde
+ - name: University of Strathclyde, Department of Pure and Applied Chemistry
    index: 1
 date: 28 February 2020
 bibliography: paper.bib
@@ -26,7 +26,7 @@ For simulations involving combinatorial searches of smaller sequences, however, 
 
 # Summary
 
-`pygen-structures` is an open source (3-clause BSD license) Python library to work with molecules from the CHARMM forcefield, generating 3 dimensional structures for them based on empirical data (@Riniker2015, as implemented in the _RDKit_, @rdkit), writing out standard PSF and PDB files. The package contains convenience functions for generating arbitrary molecules from a collection of CHARMM residues and patches, or from one letter amino acid codes (this functionality is usable by calling `pygen-structures` as a command line application) and a series of classes and functions for representing and manipulating CHARMM data. The chirality of tetrahedral centres is set using internal coordinate data from the residue topology file.
+`pygen-structures` is an open source (3-clause BSD license) Python library to work with molecules from the CHARMM forcefield, generating 3 dimensional structures for them based on empirical data (@Riniker2015, as implemented in the _RDKit_, @rdkit), writing out standard PSF and PDB files. The package contains convenience functions for generating molecules from a collection of CHARMM residues and patches, or from one letter amino acid codes (usable by calling `pygen-structures` as a command line application) and a series of classes and functions for representing and manipulating CHARMM data. The chirality of tetrahedral centres is set using internal coordinate data from the residue topology file.
 
 Classes provided by `pygen-structures` include representations of CHARMM residue topology files, which contain information about residues, their atoms and their connectivity; and parameter files, containing the relevant force constants involving sets of atoms. There are also classes which describe residues and patches from topology files, and representations of atoms and molecules. Residues from the forcefield (and molecules created from those residues) can be represented as RDKit `Mol`s, enabling pattern matching of residues to molecules.
 
@@ -150,15 +150,15 @@ A downside to this approach is that knowledge of the available CHARMM residues a
 
 `pygen-structures` is not yet a fully featured replacement for psfgen. In particular, the present structure generation method fails to fill coordinates for missing residues of large structures (making it impractical to use with protein structures from the PDB).
 
-In future, the aim is to support all of psfgen's current functionality. Further advantageous features would include the generation of simulation boxes containing water and multiple molecules, and an automatic bead-generating method for coarse-grained simulations.
+In future, the aim is to support all of psfgen's current functionality. Further advantageous features would include the generation of simulation boxes containing water, the ability to handle multiple molecules in a single system, and an automatic bead-generating method for coarse-grained simulations.
 
-Further documentation, including a writeup of the types of polymeric structures already parameterised in the CHARMM forcefield, could encourage future combinatorial work.
+Further documentation of the polymeric structures and their linkages which are already parameterised in the CHARMM forcefield would be advantageous to encourage further combinatorial work.
 
 ## Dependencies
 
-`pygen-structures` depends upon the RDKit for 3D coordinate generation and uses NumPy for representations of the molecular adjacency matrix.
+`pygen-structures` depends upon the RDKit for 3D coordinate generation and uses NumPy arrays for representations of the molecular adjacency matrix [@numpy].
 
-Limited unit and integration tests (using _pytest_) are supplied to test the functionality provided by the package. Tests can be run using `pytest --pyargs pygen_structures`. Tests rely upon _OpenMM_ as an additional dependency.
+Unit and integration tests (using _pytest_, @pytest) are supplied to test the functionality provided by the package. Tests can be run using `pytest --pyargs pygen_structures`. Tests rely upon _OpenMM_ [@openmm] as an additional dependency.
 
 Python 3.6 and 3.7 are supported, and pip can be used for installation: `pip install pygen-structures`.
 
