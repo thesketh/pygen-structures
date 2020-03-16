@@ -1,10 +1,15 @@
 import os
+import sys
+import io
 import warnings
 from pygen_structures.convenience_functions import (
     load_charmm_dir,
     pdb_to_mol
 )
 from pygen_structures import __main__ as cmd_interface
+
+FILE_DIR, _ = os.path.split(__file__)
+TEST_TOPPAR = os.path.join(FILE_DIR, 'test_toppar')
 
 def test_arg_parsing():
     argv = ["HEY", "-o", "HEY_out", "--histidine", "HSP"]
@@ -33,7 +38,7 @@ def test_arg_parsing():
     assert(args.histidine == "HSE")
     assert(args.use_charmm_names == True)
 
-def test_molecule_creation():
+def test_molecule_creation_raff():
     argv = [
         "-u", "AGLC-BFRU-AGAL", "-o", "RAFF",
         "--patches", "RAFF", "0", "1", "2",
@@ -42,12 +47,14 @@ def test_molecule_creation():
     cmd_interface.main(argv)
 
     assert(os.path.exists("RAFF.psf"))
+    os.remove('RAFF.psf')
     assert(os.path.exists("RAFF.pdb"))
 
     rtf, prm = load_charmm_dir()
     with warnings.catch_warnings():
         warnings.simplefilter('ignore')
         molecule = pdb_to_mol("RAFF.pdb", rtf, patches={"RAFF": (0, 1, 2)})
+        os.remove('RAFF.pdb')
 
     assert(molecule.name == "Raffinose")
     assert(molecule.segment == "RAFF")
@@ -206,5 +213,61 @@ def test_molecule_creation():
             else:
                 bonds.add((bond[1], bond[0]))
     assert(bonds == ref_bonds)
-    os.remove('RAFF.psf')
-    os.remove('RAFF.pdb')
+
+
+def test_molecule_creation_hey():
+    argv = [
+        "HEY", "-o", "HEY", "-t", TEST_TOPPAR, "--histidine", "HSP"
+    ]
+    cmd_interface.main(argv)
+
+    assert(os.path.exists("HEY.psf"))
+    os.remove('HEY.psf')
+    assert(os.path.exists("HEY.pdb"))
+
+    rtf, prm = load_charmm_dir()
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore')
+        molecule = pdb_to_mol("HEY.pdb", rtf)
+        os.remove('HEY.pdb')
+
+    assert(molecule.name == "H[+]EY")
+    assert(molecule.segment == "PROT")
+    assert(molecule.check_parameters(prm))
+
+def test_verify():
+    old_stdout = sys.stdout
+    sys.stdout = open(os.devnull, 'w')
+
+    argv = [
+        "PdP", "-o", "PdP", "-t", TEST_TOPPAR
+    ]
+    try:
+        cmd_interface.main(argv)
+    except SystemExit:
+        # Missing parameters call exit()
+        pass
+    assert(not os.path.exists("PdP.psf"))
+    assert(not os.path.exists("PdP.pdb"))
+
+    argv = [
+        "PdP", "-o", "PdP", "-t", TEST_TOPPAR, "-v"
+    ]
+    cmd_interface.main(argv)
+    assert(os.path.exists("PdP.psf"))
+    os.remove("PdP.psf")
+    assert(os.path.exists("PdP.pdb"))
+    os.remove("PdP.pdb")
+
+    sys.stdout.close()
+
+    sys.stdout = io.StringIO()
+    argv = [
+        "PdP"
+    ]
+    cmd_interface.main(argv)
+    sys.stdout.seek(0)
+    assert(sys.stdout.read() != "")
+    sys.stdout.close()
+
+    sys.stdout = old_stdout
