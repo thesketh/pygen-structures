@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+import sys
 from argparse import ArgumentParser
 from pygen_structures import load_charmm_dir, sequence_to_mol, code_to_mol
 from pygen_structures.version import version, year
 
-def main():
+
+def parse_args(argv):
     parser = ArgumentParser(
         description="Generate PSF and PDB files for a given sequence.",
         epilog=(
@@ -65,7 +67,11 @@ def main():
         ),
         action="store_true"
     )
-    args = parser.parse_args()
+    return parser.parse_args(argv)
+
+
+def main(argv=sys.argv[1:]):
+    args = parse_args(argv)
 
     if args.toppar:
         rtf, prm = load_charmm_dir(args.toppar)

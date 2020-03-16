@@ -39,7 +39,7 @@ DECL -O
 DECL +N 
 DECL +HN 
 DECL +CA 
-DEFA FIRS NTER LAST CTER 
+DEFA FIRS DNTE LAST CTER
 AUTO ANGLES DIHE 
  
 RESI ALDD         0.00 ! D-Alanine dipeptide, with CMAP term 
@@ -683,8 +683,8 @@ IC CA   C    +N   +CA   1.5190 117.9700  180.0000 124.2100  1.4467
 IC N    C    *CA  CB    1.4542 106.3500 -124.2200 112.9300  1.5681 !D form
 IC N    C    *CA  HA    1.4542 106.3500  115.6300 106.8100  1.0826 !D form
 IC N    CA   CB   CG1   1.4542 112.7900  180.0000 113.6300  1.5498 
-IC CG1  CA   *CB  HB    1.5498 113.6300  114.5500 104.4800  1.1195 
-IC CG1  CA   *CB  CG2   1.5498 113.6300 -130.0400 113.9300  1.5452 
+IC CG1  CA   *CB  HB    1.5498 113.6300 -114.5500 104.4800  1.1195 !D form
+IC CG1  CA   *CB  CG2   1.5498 113.6300  130.0400 113.9300  1.5452 !D form
 IC CA   CB   CG2  HG21  1.5681 113.9300 -171.3000 110.6100  1.1100 
 IC HG21 CB   *CG2 HG22  1.1100 110.6100  119.3500 110.9000  1.1102 
 IC HG21 CB   *CG2 HG23  1.1100 110.6100 -120.0900 110.9700  1.1105 
@@ -969,7 +969,7 @@ IC CB   CD   *CG  HG1   1.5399 104.3900  120.0000 112.9500  1.1077
 IC CB   CD   *CG  HG2   1.5399 104.3900 -120.0000 109.2200  1.1143
 IC N    CG   *CD  HD1   1.5322 103.2100  120.0000 110.0300  1.1137
 IC N    CG   *CD  HD2   1.5322 103.2100 -120.0000 110.0000  1.1144
-PATCHING FIRS PROP 
+PATCHING FIRS DNPR 
  
 RESI DSER         0.00 
 GROUP 
@@ -1045,8 +1045,8 @@ IC CA   C    +N   +CA   1.5162 117.6900  180.0000 124.6600  1.4525
 IC N    C    *CA  CB    1.4607 106.0900 -126.4600 112.7400  1.5693 !D form
 IC N    C    *CA  HA    1.4607 106.0900  114.9200 106.5300  1.0817 !D form
 IC N    CA   CB   OG1   1.4607 114.8100  180.0000 112.1600  1.4252 
-IC OG1  CA   *CB  HB    1.4252 112.1600  116.3900 106.1100  1.1174 
-IC OG1  CA   *CB  CG2   1.4252 112.1600 -124.1300 115.9100  1.5324 
+IC OG1  CA   *CB  HB    1.4252 112.1600 -116.3900 106.1100  1.1174 !D form
+IC OG1  CA   *CB  CG2   1.4252 112.1600  124.1300 115.9100  1.5324 !D form
 IC CA   CB   OG1  HG1   1.5693 112.1600 -179.2800 105.4500  0.9633 
 IC CA   CB   CG2  HG21  1.5693 115.9100 -173.6500 110.8500  1.1104 
 IC HG21 CB   *CG2 HG22  1.1104 110.8500  119.5100 110.4100  1.1109 
@@ -1238,6 +1238,85 @@ IC HG21 CB   *CG2 HG23  1.1108 110.7100 -119.5500 111.2300  1.1098
 !GROUP 
 !ATOM CA   CTD1    0.07 
 !CMAP -C  N  CA  C   N  CA  C  +N 
+
+! Swapped CA atom type to CTD1
+PRES DNTE         1.00 ! standard N-terminus
+GROUP                  ! use in generate statement
+ATOM N    NH3    -0.30 !
+ATOM HT1  HC      0.33 !         HT1
+ATOM HT2  HC      0.33 !     (+)/
+ATOM HT3  HC      0.33 ! --CA--N--HT2
+ATOM CA   CTD1    0.21 !   |    \
+ATOM HA   HB1     0.10 !   HA    HT3
+DELETE ATOM HN   
+BOND HT1 N HT2 N HT3 N   
+DONOR HT1 N   
+DONOR HT2 N   
+DONOR HT3 N   
+IC HT1  N    CA   C     0.0000  0.0000  180.0000  0.0000  0.0000
+IC HT2  CA   *N   HT1   0.0000  0.0000  120.0000  0.0000  0.0000
+IC HT3  CA   *N   HT2   0.0000  0.0000  120.0000  0.0000  0.0000
+
+! Swapped CA atom type to CPD1
+PRES DNPR         1.00 ! Proline N-Terminal
+GROUP                  ! use in generate statement
+ATOM N    NP     -0.07 !   HA
+ATOM HN1  HC      0.24 !   |
+ATOM HN2  HC      0.24 !  -CA   HN1
+ATOM CD   CP3     0.16 !  /  \ /
+ATOM HD1  HA2     0.09 !       N(+)
+ATOM HD2  HA2     0.09 !      / \
+ATOM CA   CPD1    0.16 !  -CD    HN2
+ATOM HA   HB1     0.09 !   | \
+BOND HN1 N HN2 N       !  HD1 HD2
+DONOR HN1 N   
+DONOR HN2 N   
+IC HN1  CA   *N   CD    0.0000  0.0000  120.0000  0.0000  0.0000
+IC HN2  CA   *N   HN1   0.0000  0.0000  120.0000  0.0000  0.0000
+
+! Swapped CA atom type to CTD1
+PRES DNNU         0.00 ! neutral N-terminus; charges from LSN 
+GROUP                  ! use in generate statement
+ATOM N    NH2    -0.96 !
+ATOM HT1  H       0.34 !         HT1
+ATOM HT2  H       0.34 !        /
+                       ! --CA--N--HT2
+ATOM CA   CTD1    0.19 !   |    ! change to CT2 for neutral N terminal glycine
+ATOM HA   HB1     0.09 !  HA    ! change to HA1 and HB2 and add HA2 atom for N terminal glycine
+DELETE ATOM HN   
+BOND HT1 N HT2 N    
+DONOR HT1 N   
+DONOR HT2 N     
+IC HT1  N    CA   C     0.0000  0.0000  180.0000  0.0000  0.0000
+IC HT2  CA   *N   HT1   0.0000  0.0000  120.0000  0.0000  0.0000
+
+! Swapped CA atom type to CTD1
+PRES DCT1         0.00 ! methylated C-terminus from methyl acetate
+GROUP                  ! use in generate statement
+ATOM N    NH1    -0.47 ! don't use with Gly or Pro
+ATOM HN   H       0.31 !          OT1
+ATOM CA   CTD1    0.17 !     |   //
+ATOM HA   HB1     0.09 ! -N--CA--C       HT1
+ATOM C    CD      0.63 !  |  |    \      /
+ATOM OT1  OB     -0.52 ! HN  HA    OT2--CT--HT2
+ATOM OT2  OS     -0.34 !                 \
+ATOM CT   CT3    -0.14 !                 HT3
+ATOM HT1  HA3     0.09 !
+ATOM HT2  HA3     0.09 !
+ATOM HT3  HA3     0.09 !
+DELETE ATOM O   
+BOND  C  OT2  OT2 CT   
+BOND CT HT1  CT HT2  CT  HT3
+DOUBLE C  OT1    
+IMPR C CA OT2 OT1
+ACCEPTOR OT1 C   
+ACCEPTOR OT2 C   
+IC N    CA   C    OT2   0.0000  0.0000  180.0000  0.0000  0.0000
+IC OT2  CA   *C   OT1   0.0000  0.0000  180.0000  0.0000  0.0000
+IC CA   C    OT2  CT    0.0000  0.0000  180.0000  0.0000  0.0000
+IC C    OT2  CT   HT1   0.0000  0.0000    0.0000  0.0000  0.0000
+IC C    OT2  CT   HT2   0.0000  0.0000  120.0000  0.0000  0.0000
+IC C    OT2  CT   HT3   0.0000  0.0000  240.0000  0.0000  0.0000
  
 END 
  
@@ -1275,10 +1354,11 @@ NH1  CTD1  320.000     1.4300 ! ALLOW   ALI PEP POL ARO
 NH3  CTD1  200.000     1.4800 ! ALLOW   ALI POL 
 OH1  CTD1  428.000     1.4200 ! ALLOW   ALI ALC ARO 
 CPD1 C     250.000     1.4900 ! ALLOW PRO 
+CPD1 CC    250.000     1.4900 ! ALLOW DPRO CTER 
 CP2  CPD1  222.500     1.5270 ! ALLOW PRO 
 HB1  CPD1  330.000     1.0800 ! ALLOW PRO 
 N    CPD1  320.000     1.4340 ! ALLOW PRO 
- 
+NP   CPD1  320.000     1.4850 ! ALLOW DPRO NTER 
  
 ANGLES 
 ! 
@@ -1299,6 +1379,7 @@ HA3  CT3  CTD1   33.430  110.10   22.53   2.17900 ! ALLOW   ALI
                 ! alkane frequencies (MJF), alkane geometries (SF) 
  
 CT1  CTD1 C      52.000   108.0000 ! ALLOW   ALI PEP POL ARO 
+CT1  CTD1 CC     52.000   108.0000 ! ALLOW   ALI PEP POL ARO CTER 
 CTD1 CT2  CA     51.800   107.5000 ! ALLOW   ALI ARO 
 CTD1 CT2  CC     52.000   108.0000 ! ALLOW   ALI PEP POL ARO 
 CTD1 CT2  CD     52.000   108.0000 ! ALLOW   ALI PEP POL ARO 
@@ -1354,6 +1435,7 @@ NH3  CTD1 C      43.700   110.0000 ! ALLOW   PEP POL ARO ALI
 NH3  CTD1 CC     43.700   110.0000 ! ALLOW   PEP POL ARO ALI 
 NH3  CTD1 CT1    67.700   110.0000 ! ALLOW   ALI POL 
 NH3  CTD1 CT2    67.700   110.0000 ! ALLOW   ALI POL 
+NH3  CTD1 CT2A   67.700   110.0000 ! from NH3  CT1  CT2
 NH3  CTD1 CT3    67.700   110.0000 ! ALLOW   ALI POL 
 NH3  CTD1 HB1    51.500   107.5000 ! ALLOW   ALI POL PEP 
 O    C    CTD1   80.000   121.0000 ! ALLOW   ALI PEP POL ARO 
@@ -1429,7 +1511,7 @@ CTD1 C    N    CP1      0.3000  4     0.00 ! ALLOW PRO
 CTD1 C    N    CP3      2.7500  2   180.00 ! ALLOW PRO 
 CTD1 C    N    CP3      0.3000  4     0.00 ! ALLOW PRO 
 CTD1 C    NH1  CTD1     1.6000  1     0.00 ! ALLOW PEP 
-CTD1 C    NH1  CTD1     2.5000  2   180.00 ! ALLOW PEP
+CTD1 C    NH1  CTD1     2.5000  2   180.00 ! ALLOW PEP 
 CT1  NH1  C    CTD1     1.6000  1     0.00 ! ALLOW PEP ! mix L and D 
 CT1  NH1  C    CTD1     2.5000  2   180.00 ! ALLOW PEP ! mix L and D 
 CT1  C    NH1  CTD1     1.6000  1     0.00 ! ALLOW PEP ! mix L and D 
@@ -1495,12 +1577,13 @@ O    C    CTD1 NH3      0.0000  1     0.00 ! ALLOW PEP PRO
 O    C    NH1  CTD1     2.5000  2   180.00 ! ALLOW PEP 
 OC   CC   CTD1 NH3      3.2000  2   180.00 ! ALLOW PEP PRO 
 SM   SM   CT2  CTD1     0.3100  3     0.00 ! ALLOW  SUL ALI 
- 
+X    CTD1 CT1  X        0.2000  3     0.00 ! ALLOW   ALI 
 X    CTD1 CT2  X        0.2000  3     0.00 ! ALLOW   ALI
 X    CTD1 CT3  X        0.2000  3     0.00 ! ALLOW   ALI
 X    CTD1 CD   X        0.0000  6   180.00 ! ALLOW   POL PEP
 X    CTD1 CC   X        0.0500  6   180.00 ! ALLOW   POL PEP
- 
+X    CTD1 NH3  X        0.1000  3     0.00 ! ALLOW   ALI POL 
+
 !D-amino acid side chain parameters 
 !chi1/chi2 fitting, Zhu, 2011 for D-FORM 
 !directly transferred parameters 
@@ -1532,6 +1615,7 @@ NH1  CTD1 CT2A HA2      0.2000  3     0.00 ! From X    CT1  CT2  X
 CTD1 CT2A CT2  HA2      0.1900  3     0.00 ! From X    CT2  CT2  X 
 HB1  CTD1 CT2A HA2      0.2000  3     0.00 ! From X    CT1  CT2  X 
 HB1  CTD1 CT2A CT2      0.2000  3     0.00 ! From X    CT1  CT2  X 
+NH3  CTD1 CT2A CT2      0.2000  3     0.00 ! From X    CT1  CT2  X !N terminus
 HA2  CT2A CTD1 C        0.2000  3     0.00 ! From X    CT1  CT2  X 
 HA2  CT2A CTD1 CC       0.2000  3     0.00 ! RB: added for C-ter Glu 
 HB1  CTD1 CT2A CPH1     0.2000  3     0.00 ! From X    CT1  CT2  X 
