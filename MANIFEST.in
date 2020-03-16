@@ -1,2 +1,4 @@
 graft pygen_structures/toppar
-graft bin
+graft pygen_structures/test
+global-exclude __pycache__
+global-exclude *.py[co]
