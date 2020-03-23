@@ -121,10 +121,14 @@ The level of annotation is greater, but hydrogen atom positions are not added (w
 With `pygen-structures`, it is easily possible to generate the structures of free amino acids, peptides, or more complex structures such as glycans and glycopeptides, in an automated fashion. A significant advantage is that it is no longer necessary to use psfgen to generate the PSF file. This greatly simplifies combinatorial searches of small molecule sequences.
 
 ```python
->>> from pygen_structures import code_to_mol, sequence_to_mol, load_charmm_dir
+>>> from pygen_structures import (
+...     code_to_mol, 
+...     sequence_to_mol, 
+...     load_charmm_dir
+... )
 >>> ## pygen_structures is distributed with the CHARMM35/36 files.
 >>> rtf, prm = load_charmm_dir()
->>> mol = code_to_mol('AdAF', rtf)  # L-alanine, D-alanine, L-phenylalanine
+>>> mol = code_to_mol('AdAF', rtf)  # L-ALA, D-ALA, L-PHE
 >>> print(mol.to_pdb_block())
 COMPND    AdAF
 AUTHOR    pygen-structures v0.2
