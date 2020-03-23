@@ -41,7 +41,7 @@ class CHARMMResidueData:
 class CHARMMResidueDefinition(CHARMMResidueData):
     """
     Definition of a CHARMM residue. This is a general representation,
-    and doesn"t have an associated index.
+    and doesn't have an associated index.
 
     :param name: residue name, from RESI record
     :param atoms: list of (atom_name, atom_type, partial_charge),\
