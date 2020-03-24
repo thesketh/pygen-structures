@@ -74,6 +74,27 @@ def pdb_to_mol(
         kept_chain: str = "A",
         segment_name: (str, None) = None,
 ) -> Molecule:
+    """
+    Generate a Molecule from a PDB file. PDB files are assumed to
+    contain only a single molecule.
+
+    Works by reading the list of residues, assigning the coordinates
+    based on the atom names, and then generating the positions for
+    the missing atoms. At present, only works for short and very
+    simple sequences, and does not try to perceive missing residues.
+    Patches must be manually applied manually.
+
+    :param pdb_path: the path to a PDB file
+    :param rtf: a ``CHARMMResidueTopologyFile`` to supply patch and\
+    residue definitions.
+    :param patches: a dict mapping patch names to a list of the\
+    indices of the residues they are to be applied to.
+    :param default_histidine: default histidine version to use.
+    :param kept_chain: PDB chain to keep (atoms with no chain are)\
+    always kept.
+    :param segment_name: segment ID to be used in the ``Molecule``
+    :return: a ``Molecule`` generated from the PDB file.
+    """
     warnings.warn(
         "In the current version, this method only works for short and "
         "very simple sequences, and does not perceive residues beyond "

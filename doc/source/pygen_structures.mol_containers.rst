@@ -1,6 +1,14 @@
 pygen\_structures.mol\_containers package
 =========================================
 
+Module contents
+---------------
+
+.. automodule:: pygen_structures.mol_containers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -24,15 +32,6 @@ pygen\_structures.mol\_containers.structure module
 --------------------------------------------------
 
 .. automodule:: pygen_structures.mol_containers.structure
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: pygen_structures.mol_containers
    :members:
    :undoc-members:
    :show-inheritance:

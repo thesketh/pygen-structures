@@ -1,6 +1,14 @@
 pygen\_structures package
 =========================
 
+Module contents
+---------------
+
+.. automodule:: pygen_structures
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -39,15 +47,6 @@ pygen\_structures.version module
 --------------------------------
 
 .. automodule:: pygen_structures.version
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: pygen_structures
    :members:
    :undoc-members:
    :show-inheritance:

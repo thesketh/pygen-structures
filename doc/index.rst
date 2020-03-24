@@ -3,13 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pygen-structures's documentation!
-============================================
+pygen-structures documentation
+==============================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :caption: Contents:
-
+   installation
+   command_line_usage
+   library_usage
+   about
 
 
 Indices and tables
