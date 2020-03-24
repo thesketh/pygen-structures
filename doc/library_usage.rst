@@ -14,7 +14,7 @@ To make ``HIS-GLU-TYR``, as outlined in the :doc:`command_line_usage`:
 
 .. code-block:: python
 
-   >>> import pygen_structures as ps
+    >>> import pygen_structures as ps
     >>> # Using the supplied toppar directory
     >>> rtf, prm = ps.load_charmm_dir()
     >>> mol = ps.code_to_mol('HEY', rtf)

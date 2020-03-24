@@ -80,7 +80,7 @@ verification:
 
 .. code-block:: bash
 
-   $ # Note that this is fixed in v0.2.3, and will now pass verification
+    $ # Note that this is fixed in v0.2.3, and will now pass verification
     $ pygen-structures AdP -o AdP
     Missing parameters:
     bonds {('CPD1', 'CC')}
