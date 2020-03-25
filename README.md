@@ -22,7 +22,7 @@ There are other ways to install the required dependencies, but the easiest way b
 
 To install only the runtime dependencies, use the following command in step 2: `conda create -n pygen-structures -c rdkit 'python>=3.6' 'rdkit>=2018.3' numpy`
 
-## Command line usagem
+## Command line usage
 
 Command line usage for peptides is simple, and takes the following form:
 
