@@ -27,8 +27,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-doc/_build
-doc/_static
+doc/_build/
+doc/_static/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -71,9 +71,6 @@ instance/
 
 # Scrapy stuff:
 .scrapy
-
-# Sphinx documentation
-docs/_build/
 
 # PyBuilder
 .pybuilder/
