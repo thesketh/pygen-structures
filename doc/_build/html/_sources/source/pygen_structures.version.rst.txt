@@ -1,7 +1,0 @@
-pygen\_structures.version module
-================================
-
-.. automodule:: pygen_structures.version
-   :members:
-   :undoc-members:
-   :show-inheritance:
