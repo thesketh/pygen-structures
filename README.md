@@ -5,7 +5,7 @@
 
 `pygen-structures` (pigeon structures) is a Python utility which allows for the generation of 3 dimensional molecular structures which can be used in molecular dynamics or Monte Carlo simulations. Molecules are generated from a list of residues and patches in the format of the CHARMM forcefield, and can be written out as valid PSF and PDB files. The package can be used as a command line utility, or as a Python library.
 
-`pygen-structures` can be installed using _pip_ (`pip install pygen-structures`), but relies upon _RDKit_, which is not pip-installable. [RDKit can be installed in many ways](https://www.rdkit.org/docs/Install.html), but the easiest way is to use the. [_conda_ package manager](https://docs.conda.io/projects/conda/en/latest/). For full installation instructions, see the 'Installation' section of the readme. Python 3.6 and 3.7 are supported. To run the tests, [_pytest_](https://docs.pytest.org/en/latest/) and [_OpenMM_](http://openmm.org/) are required.
+`pygen-structures` can be installed using _pip_ (`pip install pygen-structures`), but relies upon _RDKit_, which is not pip-installable. [RDKit can be installed in many ways](https://www.rdkit.org/docs/Install.html), but the easiest way is to use the [_conda_ package manager](https://docs.conda.io/projects/conda/en/latest/). For full installation instructions, see the 'Installation' section of the readme. Python 3.6 and 3.7 are supported. To run the tests, [_pytest_](https://docs.pytest.org/en/latest/) and [_OpenMM_](http://openmm.org/) are required.
 
 In essence, `pygen-structures` aims (eventually) to be a complete [_psfgen_](https://www.ks.uiuc.edu/Research/vmd/plugins/psfgen/) replacement with more autonomous functionality. At present, structures for small molecules can be generated. This should make it significantly easier to perform combinatorial searches on particular sequence lengths and linkages. This requires no manual intervention provided the molecules of interest are reasonably small (small enough that embedding coordinates is possible, and that the secondary structure is not vitally important) and the residue/patch definitions already exist in the forcefield.
 
@@ -22,7 +22,7 @@ There are other ways to install the required dependencies, but the easiest way b
 
 To install only the runtime dependencies, use the following command in step 2: `conda create -n pygen-structures -c rdkit 'python>=3.6' 'rdkit>=2018.3' numpy`
 
-## Command line usage
+## Command line usagem
 
 Command line usage for peptides is simple, and takes the following form:
 

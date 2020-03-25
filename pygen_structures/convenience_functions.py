@@ -165,6 +165,7 @@ def sequence_to_mol(
     :param patches: a dict mapping patch names to a list of the indices\
     of the residues they are to be applied to.
     :param name: name of the molecule for the PSF/PDB
+    :param segid: the segment ID for the created molecule
     :return: a ``Molecule`` generated from the given sequence.
 
     """
@@ -194,8 +195,9 @@ def code_to_mol(
     residue definitions.
     :param patches: a dict mapping patch names to a list of the indices\
     of the residues they are to be applied to.
-    :param default_histidine: default histidine version to use.
     :param name: name of the molecule for the PSF/PDB
+    :param segid: the segment ID for the created molecule
+    :param default_histidine: default histidine version to use.
     :return: A ``Molecule`` with the given sequence
 
     """

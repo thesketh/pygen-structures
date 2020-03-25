@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Library Usage &mdash; pygen-structures 0.2.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pygen_structures" href="source/modules.html" />
+    <link rel="prev" title="Command Line Usage" href="command_line_usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pygen-structures
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_line_usage.html">Command Line Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Library Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#representations">Representations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#representing-charmm-file-types">Representing CHARMM File Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#representing-residues-and-patches">Representing Residues and Patches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#representing-molecules">Representing Molecules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#convenience-functions">Convenience Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-library-usage">Basic Library Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">Modules</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pygen-structures</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Library Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/library_usage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="library-usage">
+<h1>Library Usage<a class="headerlink" href="#library-usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="representations">
+<h2>Representations<a class="headerlink" href="#representations" title="Permalink to this headline">¶</a></h2>
+<p>pygen-structures contains classes to represent CHARMM data, molecular (and
+molecular-like) structures and atoms.</p>
+<div class="section" id="representing-charmm-file-types">
+<h3>Representing CHARMM File Types<a class="headerlink" href="#representing-charmm-file-types" title="Permalink to this headline">¶</a></h3>
+<p>The CHARMM forcefield views molecules as collections of _residues_, with
+_patches_ usually applied to define linkages and modifications (though for some
+classes of residue, such as the amino acids, linkages between residues are
+implicit).</p>
+<p>The residue topology file (<code class="docutils literal notranslate"><span class="pre">.rtf</span></code>) contains the definition of these
+patches and residues - the information required to build the structure of the
+molecule. This includes the types of the atoms, the  necessary bonds, the
+chirality of the tetrahedral centres (through the internal coordinate table),
+the charges, and which internal coordinates are necessary for the simulation
+(i.e. which improper torsions/cross-map terms are required). The masses
+and charges are also present, as these are required to build the <code class="docutils literal notranslate"><span class="pre">.psf</span></code> file.</p>
+<p>The parameter file (<code class="docutils literal notranslate"><span class="pre">.prm</span></code>) contains the definitions of all the parameterised
+interactions (i.e. which bonds, angles, dihedrals, impropers, cross maps are
+defined, and what the radii of the atoms are for the non-bonded terms).</p>
+<p>For some residue and parameter definitions, particularly extensions to existing
+files, the topology and parameter files are combined into a stream file
+(<code class="docutils literal notranslate"><span class="pre">.str</span></code>) which contains a topology and residue section concatenated together.</p>
+<p>A good overview of the actual layout of the CHARMM forcefield file types (both
+<a class="reference external" href="https://www.ks.uiuc.edu/Training/Tutorials/namd/namd-tutorial-unix-html/node24.html">residue topology files</a> and <a class="reference external" href="https://www.ks.uiuc.edu/Training/Tutorials/namd/namd-tutorial-unix-html/node25.html">parameter files</a>) is given in the NAMD
+tutorial.</p>
+<p>As pygen-structures is concerned with building structures and not with running
+simulations, the representation of the <code class="docutils literal notranslate"><span class="pre">.rtf</span></code> files is complete,
+but the representation of <code class="docutils literal notranslate"><span class="pre">.prm</span></code> files is limited to verifying that
+the parameters are present rather than probing their values.</p>
+<p><strong>Residue Files</strong></p>
+<p>CHARMM <code class="docutils literal notranslate"><span class="pre">.rtf</span></code> files are represented using the
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMResidueTopologyFile" title="pygen_structures.charmm_containers.CHARMMResidueTopologyFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHARMMResidueTopologyFile</span></code></a> class,
+which can be instantiated from a <code class="docutils literal notranslate"><span class="pre">.rtf</span></code> or <code class="docutils literal notranslate"><span class="pre">.str</span></code> file using its
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMResidueTopologyFile.from_file" title="pygen_structures.charmm_containers.CHARMMResidueTopologyFile.from_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_file()</span></code></a>
+method, and additional files can be added using the
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMResidueTopologyFile.read_file" title="pygen_structures.charmm_containers.CHARMMResidueTopologyFile.read_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_file()</span></code></a>
+method. Residue and patch definitions within the file are stored as instances of
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMResidueDefinition" title="pygen_structures.charmm_containers.CHARMMResidueDefinition"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHARMMResidueDefinition</span></code></a> and
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMPatchResidueDefinition" title="pygen_structures.charmm_containers.CHARMMPatchResidueDefinition"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHARMMPatchResidueDefinition</span></code></a>
+respectively. Additional residue definitions and patch
+definitions can be added using
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMResidueTopologyFile.add_residue_definition" title="pygen_structures.charmm_containers.CHARMMResidueTopologyFile.add_residue_definition"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_residue_definition()</span></code></a>
+and
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMResidueTopologyFile.add_patch_definition" title="pygen_structures.charmm_containers.CHARMMResidueTopologyFile.add_patch_definition"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_patch_definition()</span></code></a>.</p>
+<p>The residue definitions are stored in the <code class="docutils literal notranslate"><span class="pre">dict</span></code> attribute
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">residues</span></code>,
+and the patch definitions in the <code class="docutils literal notranslate"><span class="pre">dict</span></code> attribute
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">patches</span></code>,
+where the keys are the relevant residue/patch name. The masses of the atoms in
+Daltons are stored in <code class="docutils literal notranslate"><span class="pre">dict</span></code> attribute
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">masses</span></code>,
+where keys are the atom types.</p>
+<p><strong>Parameter Files</strong></p>
+<p>CHARMM <code class="docutils literal notranslate"><span class="pre">.prm</span></code> files are represented using the
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMParameterFile" title="pygen_structures.charmm_containers.CHARMMParameterFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHARMMParameterFile</span></code></a> class.
+Like
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMResidueTopologyFile" title="pygen_structures.charmm_containers.CHARMMResidueTopologyFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHARMMResidueTopologyFile</span></code></a>,
+this class can be instantiated using its
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMParameterFile.from_file" title="pygen_structures.charmm_containers.CHARMMParameterFile.from_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_file()</span></code></a>
+method and additional files can be read using the
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMParameterFile.read_file" title="pygen_structures.charmm_containers.CHARMMParameterFile.read_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_file()</span></code></a>
+method. Methods
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMParameterFile.get_unmatched" title="pygen_structures.charmm_containers.CHARMMParameterFile.get_unmatched"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_unmatched()</span></code></a>
+and
+<a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMParameterFile.check_parameters" title="pygen_structures.charmm_containers.CHARMMParameterFile.check_parameters"><code class="xref py py-meth docutils literal notranslate"><span class="pre">check_parameters()</span></code></a>
+can be used to assert that all parameters of a Molecule exist in the parameter
+file, with the former returning a <code class="docutils literal notranslate"><span class="pre">dict</span></code> of internal coordinate type
+to a <code class="docutils literal notranslate"><span class="pre">list</span></code> of unmatched tuples and the latter
+a <code class="docutils literal notranslate"><span class="pre">bool</span></code> (<code class="docutils literal notranslate"><span class="pre">True</span></code> if all parameters exist, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise).</p>
+<p>This class contains five <code class="docutils literal notranslate"><span class="pre">set</span></code> objects:
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">bonds</span></code>,
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">angles</span></code>,
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">dihedrals</span></code>,
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">impropers</span></code>,
+and
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">cross_maps</span></code>,
+which contain tuples of atom types from the forcefield. In the first three sets,
+the tuples are also stored in reverse, as these degrees of freedom can be
+specified in reverse order without altering the relevant parameters.</p>
+</div>
+<div class="section" id="representing-residues-and-patches">
+<h3>Representing Residues and Patches<a class="headerlink" href="#representing-residues-and-patches" title="Permalink to this headline">¶</a></h3>
+<p><strong>The Difference Between Definitions and Residues</strong></p>
+<p>CHARMM residues as presented in <code class="docutils literal notranslate"><span class="pre">.rtf</span></code> files are an abstract residue
+definition, rather than physical residues. As such, these lack an associated
+residue index, and their degrees of freedom (the bonds, impropers and cross
+maps) refer to the atom names from the residue definition. These are represented
+using the <a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMResidueDefinition" title="pygen_structures.charmm_containers.CHARMMResidueDefinition"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHARMMResidueDefinition</span></code></a>
+class.</p>
+<p>CHARMM residues in an actual structure are not abstract, and refer to real
+residues in a physical molecule. As such, these _do_ have an associated index
+and their degrees of freedom refer to atom IDs - tuples of
+<code class="docutils literal notranslate"><span class="pre">(residue_index:</span> <span class="pre">int,</span> <span class="pre">atom_name:</span> <span class="pre">str)</span></code>. This is to allow for easier removal of
+dangling bonds and easier application of patches. These residues are represented
+using the <a class="reference internal" href="source/pygen_structures.charmm_containers.html#pygen_structures.charmm_containers.CHARMMResidue" title="pygen_structures.charmm_containers.CHARMMResidue"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHARMMResidue</span></code></a> class.
+Patch definitions can only be applied to real residues.</p>
+<p><strong>CHARMM Residue Definitions</strong></p>
+<p><strong>CHARMM Residues</strong></p>
+</div>
+<div class="section" id="representing-molecules">
+<h3>Representing Molecules<a class="headerlink" href="#representing-molecules" title="Permalink to this headline">¶</a></h3>
+<p>pygen-structures uses three main classes for molecular representation.</p>
+<p><strong>Molecules</strong></p>
+<p><strong>Molecule-like Structures</strong></p>
+<p><strong>Atoms</strong></p>
+</div>
+</div>
+<div class="section" id="convenience-functions">
+<h2>Convenience Functions<a class="headerlink" href="#convenience-functions" title="Permalink to this headline">¶</a></h2>
+<p>Convenience functions represent the easiest way to interact with the code as
+a library.</p>
+<p><strong>Loading CHARMM Data</strong></p>
+<p><strong>Creating Molecules</strong></p>
+<p><strong>Creating Molecules from PDB Files</strong></p>
+</div>
+<div class="section" id="basic-library-usage">
+<h2>Basic Library Usage<a class="headerlink" href="#basic-library-usage" title="Permalink to this headline">¶</a></h2>
+<p>With the convenience functions, library usage is almost as simple as command
+line usage. The default toppar directory can be loaded using
+<a class="reference internal" href="source/pygen_structures.convenience_functions.html#pygen_structures.convenience_functions.load_charmm_dir" title="pygen_structures.convenience_functions.load_charmm_dir"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_charmm_dir()</span></code></a>, and
+<a class="reference internal" href="source/pygen_structures.mol_containers.molecule.html#pygen_structures.mol_containers.molecule.Molecule" title="pygen_structures.mol_containers.molecule.Molecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></a> objects can be
+generated using <a class="reference internal" href="source/pygen_structures.convenience_functions.html#pygen_structures.convenience_functions.code_to_mol" title="pygen_structures.convenience_functions.code_to_mol"><code class="xref py py-func docutils literal notranslate"><span class="pre">code_to_mol()</span></code></a>
+(from a <code class="docutils literal notranslate"><span class="pre">str</span></code> of single amino acid codes) or
+<a class="reference internal" href="source/pygen_structures.convenience_functions.html#pygen_structures.convenience_functions.sequence_to_mol" title="pygen_structures.convenience_functions.sequence_to_mol"><code class="xref py py-func docutils literal notranslate"><span class="pre">sequence_to_mol()</span></code></a> (from a <code class="docutils literal notranslate"><span class="pre">list</span></code>
+of generic CHARMM residue names). <code class="docutils literal notranslate"><span class="pre">Molecule</span></code> objects can also be loaded from
+PDB files using <a class="reference internal" href="source/pygen_structures.convenience_functions.html#pygen_structures.convenience_functions.pdb_to_mol" title="pygen_structures.convenience_functions.pdb_to_mol"><code class="xref py py-func docutils literal notranslate"><span class="pre">pdb_to_mol()</span></code></a>,
+though at present this only works for small molecules and makes no attempt to
+pattern match the missing residues.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>All examples should be prefaced with</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pygen_structures</span> <span class="k">as</span> <span class="nn">ps</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Using the supplied toppar directory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rtf</span><span class="p">,</span> <span class="n">prm</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">load_charmm_dir</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To make <code class="docutils literal notranslate"><span class="pre">HIS-GLU-TYR</span></code>, as outlined in the <a class="reference internal" href="command_line_usage.html"><span class="doc">Command Line Usage</span></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">code_to_mol</span><span class="p">(</span><span class="s1">&#39;HEY&#39;</span><span class="p">,</span> <span class="n">rtf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">to_pdb_file</span><span class="p">(</span><span class="s1">&#39;HEY.pdb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">to_psf_file</span><span class="p">(</span><span class="s1">&#39;HEY.psf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And should we want to use the protonated form of histidine:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;HSP&#39;</span><span class="p">,</span> <span class="s1">&#39;GLU&#39;</span><span class="p">,</span> <span class="s1">&#39;TYR&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">sequence_to_mol</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">rtf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">code_to_mol</span><span class="p">(</span><span class="s1">&#39;HEY&#39;</span><span class="p">,</span> <span class="n">rtf</span><span class="p">,</span> <span class="n">default_histidine</span><span class="o">=</span><span class="s1">&#39;HSP&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">to_pdb_file</span><span class="p">(</span><span class="s1">&#39;HEY.pdb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">to_psf_file</span><span class="p">(</span><span class="s1">&#39;HEY.psf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Back to non-protein examples, we could create the trisaccharide raffinose.
+This requires the use of a patch. The default segment ID, <code class="docutils literal notranslate"><span class="pre">PROT</span></code>, is less
+applicable here, so we can specify a new segment, <code class="docutils literal notranslate"><span class="pre">RAFF</span></code>. While we’re at it,
+we can set the name for the <code class="docutils literal notranslate"><span class="pre">COMPND</span></code> header to <code class="docutils literal notranslate"><span class="pre">Raffinose</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AGLC&#39;</span><span class="p">,</span> <span class="s1">&#39;BFRU&#39;</span><span class="p">,</span> <span class="s1">&#39;AGAL&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">patches</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;RAFF&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">sequence_to_mol</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">rtf</span><span class="p">,</span> <span class="n">patches</span><span class="p">,</span> <span class="s1">&#39;Raffinose&#39;</span><span class="p">,</span> <span class="s1">&#39;RAFF&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">to_pdb_file</span><span class="p">(</span><span class="s1">&#39;RAFF.pdb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">to_psf_file</span><span class="p">(</span><span class="s1">&#39;RAFF.psf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Verification that parameters exist for created structures is simple:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">code_to_mol</span><span class="p">(</span><span class="s1">&#39;AdP&#39;</span><span class="p">,</span> <span class="n">rtf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># This will pass verification in 0.2.3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">check_parameters</span><span class="p">(</span><span class="n">prm</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unmatched</span> <span class="o">=</span> <span class="n">prm</span><span class="o">.</span><span class="n">get_unmatched</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unmatched</span>
+<span class="go">{&#39;bonds&#39;: {(&#39;CPD1&#39;, &#39;CC&#39;)}, &#39;angles&#39;: set(), &#39;dihedrals&#39;: set(), &#39;impropers&#39;: set(), &#39;cross_maps&#39;: set()}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol2</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">code_to_mol</span><span class="p">(</span><span class="s1">&#39;AP&#39;</span><span class="p">,</span> <span class="n">rtf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">prm</span><span class="o">.</span><span class="n">check_parameters</span><span class="p">(</span><span class="n">mol2</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unmatched</span> <span class="o">=</span> <span class="n">prm</span><span class="o">.</span><span class="n">get_unmatched</span><span class="p">(</span><span class="n">mol2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unmatched</span>
+<span class="go">{&#39;bonds&#39;: set(), &#39;angles&#39;: set(), &#39;dihedrals&#39;: set(), &#39;impropers&#39;: set(), &#39;cross_maps&#39;: set()}</span>
+</pre></div>
+</div>
+<p>Molecules can be created manually, though it is far easier to use the
+convenience functions.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="source/modules.html" class="btn btn-neutral float-right" title="pygen_structures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="command_line_usage.html" class="btn btn-neutral float-left" title="Command Line Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Travis Hesketh
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

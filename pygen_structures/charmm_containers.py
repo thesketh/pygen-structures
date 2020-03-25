@@ -755,7 +755,7 @@ class CHARMMResidueTopologyFile:
     :param masses: a mapping of ``atom_type`` to mass.
     :param first: the name of the patch applied to the first residue\
     in a chain.
-    :param first: the name of the patch applied to the last residue\
+    :param last: the name of the patch applied to the last residue\
     in a chain.
 
     """
