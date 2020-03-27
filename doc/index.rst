@@ -48,7 +48,14 @@ reasonably small (small enough that embedding coordinates is possible - fewer
 than 15 residues - and that the secondary structure is not vitally important)
 and the residue/patch definitions already exist in the forcefield.
 
-**A quick example**
+`The project's GitHub repository can be found here.`__ New contributors are
+welcome. Any bugs or significant frustrations can be reported in the
+issue tracker.
+
+A Quick Example
+---------------
+
+Creation of the sugar raffinose, making ``RAFF.psf`` and ``RAFF.pdb``:
 
 .. code-block:: bash
 
@@ -73,6 +80,7 @@ __ https://numpy.org/
 __ https://docs.pytest.org/en/latest/
 __ http://openmm.org/
 __ https://www.ks.uiuc.edu/Research/vmd/plugins/psfgen/
+__ https://github.com/thesketh/pygen-structures/
 
 .. toctree::
     :maxdepth: 3

@@ -166,16 +166,25 @@ class CHARMMResidueDefinition(CHARMMResidueData):
             last
         )
 
-    def to_residue(self, index: int):  # -> CHARMMResidue:
+    def to_residue(
+            self,
+            index: int,
+            last_index: (int, None) = None,
+            next_index: (int, None) = None
+        ):  # -> CHARMMResidue:
         """
         Generate a ``CHARMMResidue`` from the residue definition.
 
         :param index: the ``residue_index`` of the created residue.
+        :param last_index: the ``residue_index`` of the previous residue.
+        :param index: the ``residue_index`` of the next residue.
         :return: the created residue
         :rtype: CHARMMResidue
 
         """
-        return CHARMMResidue.from_residue_definition(self, index)
+        return CHARMMResidue.from_residue_definition(
+            self, index, last_index, next_index
+        )
 
     def to_structure(self) -> Structure:
         """
