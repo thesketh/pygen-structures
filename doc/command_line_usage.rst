@@ -23,8 +23,9 @@ The histidine form used can be set using ``--histidine``, and defaults to
 ``HSE`` (neutral form with proton on N).
 
 Patches can be supplied using ``--patches``, the name of the patch, and the
-0-based indices the patch is to be applied to (or strings 'FIRST'/'LAST'
-to refer to the first and last residue).
+0-based indices the patch is to be applied to (or strings ``'FIRST'``/
+``'LAST'`` to refer to the first and last residue). See the note below on the
+difference between ``FIRST`` and ``0`` / ``LAST`` and ``-1``.
 
 To generate more complex structures, such as sugars, the residue names should
 be supplied (hyphen delimited) and the ``-u``/``--use-charmm-names`` option
@@ -32,6 +33,18 @@ selected.
 
 ``--name`` and ``--segid`` control the names given in the ``COMPND`` record and
 the segment ID (4 character max) respectively.
+
+
+What's Special About FIRST and LAST?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If patches are specified as being applied to ``'FIRST'`` or ``'LAST'``
+rather than ``0`` or ``-1``, the default first/last patch is not applied.
+This is to distinguish between cases where a different terminal patch is
+being applied (such as if protein patch ``CT2`` was being applied instead of
+``CTER``) and cases where patches just happen to affect the first or last
+residue.
+
 
 Examples
 --------

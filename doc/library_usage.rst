@@ -301,7 +301,7 @@ in the RDKit ``Mol``, stored in
 :attr:`~pygen_structures.mol_containers.structure.Structure.mol`
 and in the ``x``, ``y``, and ``z`` attributes of the ``Atom`` objects.
 
-The mol can also be retrieved using the
+The RDKit ``Mol`` can also be retrieved using the
 :meth:`~pygen_structures.mol_containers.structure.Structure.to_mol` method.
 
 
@@ -378,7 +378,8 @@ Both functions require as a minimum the sequence/code to create and a
 Creating Molecules from PDB Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``Molecule`` objects can also be loaded from PDB files using
+:class:`~pygen_structures.mol_containers.molecule.Molecule` objects can also be
+loaded from PDB files using
 :func:`~pygen_structures.convenience_functions.pdb_to_mol`, though at present
 this only works for small molecules and makes no attempt to pattern match the
 missing residues.
