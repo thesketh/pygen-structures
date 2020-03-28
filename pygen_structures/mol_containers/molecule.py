@@ -473,7 +473,8 @@ class Molecule:
         names from ``topology`` to the indices of the residue the \
         patch is to be applied to.
         :param name: the name of the ``Molecule``
-        :param segid: the segment for the PDB/PDB
+        :param segid: the segment for the PDB/PDB. Must contain four\
+        characters or fewer.
 
         """
         if name is None:

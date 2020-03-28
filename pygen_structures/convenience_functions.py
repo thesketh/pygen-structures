@@ -92,7 +92,8 @@ def pdb_to_mol(
     :param default_histidine: default histidine version to use.
     :param kept_chain: PDB chain to keep (atoms with no chain are)\
     always kept.
-    :param segment_name: segment ID to be used in the ``Molecule``
+    :param segment_name: segment ID to be used in the ``Molecule``.\
+    Must contain four characters or fewer.
     :return: a ``Molecule`` generated from the PDB file.
     """
     warnings.warn(
@@ -165,7 +166,8 @@ def sequence_to_mol(
     :param patches: a dict mapping patch names to a list of the indices\
     of the residues they are to be applied to.
     :param name: name of the molecule for the PSF/PDB
-    :param segid: the segment ID for the created molecule
+    :param segid: the segment ID for the created molecule. Must contain\
+    four characters or fewer.
     :return: a ``Molecule`` generated from the given sequence.
 
     """
@@ -196,7 +198,8 @@ def code_to_mol(
     :param patches: a dict mapping patch names to a list of the indices\
     of the residues they are to be applied to.
     :param name: name of the molecule for the PSF/PDB
-    :param segid: the segment ID for the created molecule
+    :param segid: the segment ID for the created molecule. Must contain four\
+    characters or fewer.
     :param default_histidine: default histidine version to use.
     :return: A ``Molecule`` with the given sequence
 
