@@ -31,7 +31,7 @@ class Molecule:
     indices the patch is to be applied to (or "FIRST"/"LAST") magic\
     strings.
     :param segment: the segment ID to be used when the ``Atom`` records\
-    are created.
+    are created. This must be less than four characters.
     :param fixed_atoms: a mapping of ``atom_id`` to the fixed coords
     :param use_etkdg: In the structure, when generating coords,\
     use empirical distance generation (if ``True``) or a traditional\
