@@ -15,6 +15,7 @@ from pygen_structures.mol_containers.atom import Atom
 from pygen_structures.mol_containers.structure import Structure
 
 import numpy as np
+import warnings
 from typing import Tuple, List, Dict
 
 
@@ -68,7 +69,14 @@ class Molecule:
         self.residues = residues if residues else list()
         self.patches = patches if patches else dict()
         self.topology = topology if topology else CHARMMResidueTopologyFile()
+
         self.segment = segment if segment else "U"
+        if len(self.segment) > 4:
+            err = (
+                "Segment {} is longer than 4 characters and will be truncated."
+            )
+            warnings.warn(err.format(self.segment))
+
         self.fixed_atoms = fixed_atoms if fixed_atoms else {}
         self.use_etkdg = use_etkdg
 

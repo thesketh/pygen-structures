@@ -437,7 +437,7 @@ Loading raffinose back from PDB currently requires us to specify the patches:
 
 .. code-block:: python
 
-    >>> patches = {'RAFF', [0, 1, 2]}
+    >>> patches = {'RAFF': [0, 1, 2]}
     >>> mol = ps.convenience_functions.pdb_to_mol('RAFF.pdb', rtf, patches)
 
 Verification that parameters exist for created structures is simple:
