@@ -43,30 +43,30 @@ KEYWDS    NULL
 EXPDTA    NULL                                                        
 AUTHOR    Marvin                                                      
 REVDAT   1   25-FEB-20         0                                  
-HETATM    1  C   UNK     0       1.322   4.682   0.738  0.00  0.00       \
-...    C+0
-HETATM    2  C   UNK     0      -0.092   4.630   0.732  0.00  0.00       \
-...    C+0
-HETATM    3  C   UNK     0      -0.852   5.626   1.374  0.00  0.00       \
-...    C+0
-HETATM    4  C   UNK     0      -0.210   6.682   2.043  0.00  0.00       \
-...    C+0
-HETATM    5  C   UNK     0       1.194   6.742   2.065  0.00  0.00       \
-...    C+0
-HETATM    6  C   UNK     0       1.956   5.751   1.415  0.00  0.00       \
-...    C+0
-HETATM    7  C   UNK     0       2.119   3.650   0.016  0.00  0.00       \
-...    C+0
-HETATM    8  C   UNK     0       2.390   4.043  -1.467  0.00  0.00       \
-...    C+0
-HETATM    9  C   UNK     0       3.204   3.058  -2.216  0.00  0.00       \
-...    C+0
-HETATM   10  N   UNK     0       1.121   4.261  -2.184  0.00  0.00       \
-...    N+1
-HETATM   11  O   UNK     0       3.531   3.283  -3.404  0.00  0.00       \
-...    O+0
-HETATM   12  O   UNK     0       3.645   1.907  -1.656  0.00  0.00       \
-...    O-1
+HETATM    1  C   UNK     0       1.322   4.682   0.738  0.00  0.00     \
+...      C+0
+HETATM    2  C   UNK     0      -0.092   4.630   0.732  0.00  0.00     \
+...      C+0
+HETATM    3  C   UNK     0      -0.852   5.626   1.374  0.00  0.00     \
+...      C+0
+HETATM    4  C   UNK     0      -0.210   6.682   2.043  0.00  0.00     \
+...      C+0
+HETATM    5  C   UNK     0       1.194   6.742   2.065  0.00  0.00     \
+...      C+0
+HETATM    6  C   UNK     0       1.956   5.751   1.415  0.00  0.00     \
+...      C+0
+HETATM    7  C   UNK     0       2.119   3.650   0.016  0.00  0.00     \
+...      C+0
+HETATM    8  C   UNK     0       2.390   4.043  -1.467  0.00  0.00     \
+...      C+0
+HETATM    9  C   UNK     0       3.204   3.058  -2.216  0.00  0.00     \
+...      C+0
+HETATM   10  N   UNK     0       1.121   4.261  -2.184  0.00  0.00     \
+...      N+1
+HETATM   11  O   UNK     0       3.531   3.283  -3.404  0.00  0.00     \
+...      O+0
+HETATM   12  O   UNK     0       3.645   1.907  -1.656  0.00  0.00     \
+...      O-1
 MASTER        0    0    0    0    0    0    0    0   12    0    0    0
 END
 ```
@@ -80,30 +80,30 @@ Note the lack of annotation in the PDB atom names (labelled as their element sym
 >>> AllChem.EmbedMolecule(mol, AllChem.ETKDGv2())
 0
 >>> print(Chem.MolToPDBBlock(mol))
-ATOM      1  N   PHE A   1      -2.664  -1.853   0.236  1.00  0.00       \
-...    N  
-ATOM      2  CA  PHE A   1      -1.340  -1.105   0.789  1.00  0.00       \
-...    C  
-ATOM      3  C   PHE A   1      -1.982   0.347   0.875  1.00  0.00       \
-...    C  
-ATOM      4  O   PHE A   1      -3.045   0.666   0.443  1.00  0.00       \
-...    O  
-ATOM      5  CB  PHE A   1      -0.777  -0.919  -0.748  1.00  0.00       \
-...    C  
-ATOM      6  CG  PHE A   1       0.505  -0.247  -0.694  1.00  0.00       \
-...    C  
-ATOM      7  CD1 PHE A   1       1.621  -1.079  -0.546  1.00  0.00       \
-...    C  
-ATOM      8  CD2 PHE A   1       0.787   1.081  -0.783  1.00  0.00       \
-...    C  
-ATOM      9  CE1 PHE A   1       2.896  -0.556  -0.497  1.00  0.00       \
-...    C  
-ATOM     10  CE2 PHE A   1       2.054   1.623  -0.737  1.00  0.00       \
-...    C  
-ATOM     11  CZ  PHE A   1       3.120   0.793  -0.592  1.00  0.00       \
-...    C  
-ATOM     12  OXT PHE A   1      -1.176   1.249   1.519  1.00  0.00       \
-...    O  
+ATOM      1  N   PHE A   1      -2.664  -1.853   0.236  1.00  0.00     \
+...      N  
+ATOM      2  CA  PHE A   1      -1.340  -1.105   0.789  1.00  0.00     \
+...      C  
+ATOM      3  C   PHE A   1      -1.982   0.347   0.875  1.00  0.00     \
+...      C  
+ATOM      4  O   PHE A   1      -3.045   0.666   0.443  1.00  0.00     \
+...      O  
+ATOM      5  CB  PHE A   1      -0.777  -0.919  -0.748  1.00  0.00     \
+...      C  
+ATOM      6  CG  PHE A   1       0.505  -0.247  -0.694  1.00  0.00     \
+...      C  
+ATOM      7  CD1 PHE A   1       1.621  -1.079  -0.546  1.00  0.00     \
+...      C  
+ATOM      8  CD2 PHE A   1       0.787   1.081  -0.783  1.00  0.00     \
+...      C  
+ATOM      9  CE1 PHE A   1       2.896  -0.556  -0.497  1.00  0.00     \
+...      C  
+ATOM     10  CE2 PHE A   1       2.054   1.623  -0.737  1.00  0.00     \
+...      C  
+ATOM     11  CZ  PHE A   1       3.120   0.793  -0.592  1.00  0.00     \
+...      C  
+ATOM     12  OXT PHE A   1      -1.176   1.249   1.519  1.00  0.00     \
+...      O  
 CONECT    1    2
 CONECT    2    3    5
 CONECT    3    4    4   12
@@ -128,20 +128,24 @@ With `pygen-structures`, it is easily possible to generate the structures of fre
 ... )
 >>> ## pygen_structures is distributed with the CHARMM35/36 files.
 >>> rtf, prm = load_charmm_dir()
->>> mol = code_to_mol('AdAF', rtf)  # L-ALA, D-ALA, L-PHE
+>>> mol = code_to_mol('AdAF', rtf, segid='PROT')  # L-ALA, D-ALA, L-PHE
 >>> print(mol.to_pdb_block())
 COMPND    AdAF
-AUTHOR    pygen-structures v0.2
-ATOM      1   N  ALA     1      -6.082  -0.735   1.391  1.00  0.00      \
-...PROT N1+
-ATOM      2  HT1 ALA     1      -5.807  -0.157   2.244  1.00  0.00      \
-...PROT H  
-ATOM      3  HT2 ALA     1      -7.098  -0.635   1.251  1.00  0.00      \
-...PROT H  
-ATOM      4  HT3 ALA     1      -5.757  -1.714   1.511  1.00  0.00      \
-...PROT H  
-ATOM      5  CA  ALA     1      -5.408  -0.121   0.253  1.00  0.00      \
-...PROT C  
+AUTHOR    pygen-structures v0.2.4
+REMARK  42
+REMARK  42 TOPOLOGY FILES USED
+REMARK  42     toppar_all36_prot_c36_d_aminoacids.str
+REMARK  42     top_all36_prot.rtf
+ATOM      1   N  ALA     1      -6.082  -0.735   1.391  1.00  0.00     \
+... PROT N1+
+ATOM      2  HT1 ALA     1      -5.807  -0.157   2.244  1.00  0.00     \
+... PROT H  
+ATOM      3  HT2 ALA     1      -7.098  -0.635   1.251  1.00  0.00     \
+... PROT H  
+ATOM      4  HT3 ALA     1      -5.757  -1.714   1.511  1.00  0.00     \
+... PROT H  
+ATOM      5  CA  ALA     1      -5.408  -0.121   0.253  1.00  0.00     \
+... PROT C  
 <truncated>
 >>> patches = {"RAFF", [0, 1, 2]}
 >>> sequence = ['AGLC', 'BFRU', 'AGAL']
@@ -150,35 +154,45 @@ ATOM      5  CA  ALA     1      -5.408  -0.121   0.253  1.00  0.00      \
 ...     rtf,
 ...     patches=patches,
 ...     name='Raffinose'
-...     segment_id="RAFF"
+...     segid="RAFF"
 ... )
 >>> print(mol.to_pdb_block())
 COMPND    Raffinose
-AUTHOR    pygen-structures v0.2
-ATOM      1  C1  AGLC    1      -1.645  -0.345  -0.614  1.00  0.00      \
-...RAFF C  
-ATOM      2  H1  AGLC    1      -1.845   0.725  -0.413  1.00  0.00      \
-...RAFF H  
-ATOM      3  O1  AGLC    1      -2.764  -1.026  -0.170  1.00  0.00      \
-...RAFF O  
-ATOM      4  C5  AGLC    1       0.657  -0.321  -0.142  1.00  0.00      \
-...RAFF C  
-ATOM      5  H5  AGLC    1       1.185  -1.104  -0.707  1.00  0.00      \
-...RAFF H  
+AUTHOR    pygen-structures v0.2.4
+REMARK  42
+REMARK  42 TOPOLOGY FILES USED
+REMARK  42     top_all36_carb.rtf
+ATOM      1  C1  AGLC    1      -1.645  -0.345  -0.614  1.00  0.00     \
+... RAFF C  
+ATOM      2  H1  AGLC    1      -1.845   0.725  -0.413  1.00  0.00     \
+... RAFF H  
+ATOM      3  O1  AGLC    1      -2.764  -1.026  -0.170  1.00  0.00     \
+... RAFF O  
+ATOM      4  C5  AGLC    1       0.657  -0.321  -0.142  1.00  0.00     \
+... RAFF C  
+ATOM      5  H5  AGLC    1       1.185  -1.104  -0.707  1.00  0.00     \
+... RAFF H  
 <truncated>
 >>> print(mol.to_psf_block())
-PSF CMAP
+PSF EXT CMAP XPLOR
 
-         2 !NTITLE
-* Generated procedurally using pygen-structures v0.2.
+         4 !NTITLE
+* Generated procedurally by pygen-structures v0.2.4
 * Molecule: Raffinose
+* Topology files used:
+* - top_all36_carb.rtf
 
-      66 !NATOM
-       1 RAFF 1    AGLC C1   CC31   0.290000       12.0110           0
-       2 RAFF 1    AGLC H1   HCA1   0.090000        1.0080           0
-       3 RAFF 1    AGLC O1   OC30  -0.360000       15.9994           0
-       4 RAFF 1    AGLC C5   CC31   0.110000       12.0110           0
-       5 RAFF 1    AGLC H5   HCA1   0.090000        1.0080           0
+        66 !NATOM
+         1 RAFF     1        AGLC     C1       CC3162   0.290000       \
+...12.0110           0
+         2 RAFF     1        AGLC     H1       HCA1     0.090000       \
+... 1.0080           0
+         3 RAFF     1        AGLC     O1       OC302   -0.360000       \
+...15.9994           0
+         4 RAFF     1        AGLC     C5       CC3163   0.110000       \
+...12.0110           0
+         5 RAFF     1        AGLC     H5       HCA1     0.090000       \
+... 1.0080           0
 <truncated>
 ```
 

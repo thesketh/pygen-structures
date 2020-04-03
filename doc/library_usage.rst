@@ -421,9 +421,9 @@ And should we want to use the protonated form of histidine:
     >>> mol.to_psf_file('HEY.psf')
 
 Back to non-protein examples, we could create the trisaccharide raffinose.
-This requires the use of a patch. The default segment ID, ``PROT``, is less
-applicable here, so we can specify a new segment, ``RAFF``. While we're at it,
-we can set the name for the ``COMPND`` header to ``Raffinose``:
+This requires the use of a patch. The default segment ID, ``U``, is not
+particularly descriptive, so we can specify a new segment, ``RAFF``. While
+we're at it, we can set the name for the ``COMPND`` header to ``Raffinose``:
 
 .. code-block:: python
 
@@ -445,7 +445,7 @@ Verification that parameters exist for created structures is simple:
 .. code-block:: python
 
     >>> mol = ps.code_to_mol('AdP', rtf)
-    >>> # This will pass verification in 0.2.3
+    >>> # This is fixed in 0.2.3, and will return True
     >>> mol.check_parameters(prm)
     False
     >>> unmatched = prm.get_unmatched(mol)
