@@ -27,3 +27,6 @@ from pygen_structures.convenience_functions import (
     sequence_to_mol,
     code_to_mol
 )
+from pygen_structures.version import version
+
+__version__ = version
