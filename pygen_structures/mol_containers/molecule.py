@@ -320,7 +320,7 @@ class Molecule:
         :param pdb_path: path to PDB file.
 
         """
-        with open(pdb_path, "w") as pdb_file:
+        with open(pdb_path, "w", encoding="utf-8") as pdb_file:
             pdb_file.write(self.to_pdb_block())
 
     def to_psf_block(self) -> str:
@@ -438,7 +438,7 @@ class Molecule:
         :param psf_path: Path to PSF file.
 
         """
-        with open(psf_path, "w") as psf_file:
+        with open(psf_path, "w", encoding="utf-8") as psf_file:
             psf_file.write(self.to_psf_block())
 
     def check_parameters(self, parameter_set: CHARMMParameterFile) -> bool:

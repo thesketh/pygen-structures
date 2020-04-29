@@ -7,7 +7,7 @@ import numpy as np
 IndexCollection = List[Tuple[int, ...]]
 
 TOPPAR_DIRECTORY = pkg_resources.resource_filename(
-    'pygen_structures', 'toppar'
+    "pygen_structures", "toppar"
 )
 
 
@@ -99,30 +99,30 @@ BOND_ORDER_TO_TYPE = {
 }
 
 ACID_CODE_TO_CHARMM = {
-    'A': 'ALA',
-    'R': 'ARG',
-    'N': 'ASN',
-    'D': 'ASP',
-    'C': 'CYS',
-    'E': 'GLU',
-    'Q': 'GLN',
-    'G': 'GLY',
-    'H': 'HSD',
-    'I': 'ILE',
-    'L': 'LEU',
-    'K': 'LYS',
-    'M': 'MET',
-    'F': 'PHE',
-    'P': 'PRO',
-    'S': 'SER',
-    'T': 'THR',
-    'W': 'TRP',
-    'Y': 'TYR',
-    'V': 'VAL'
+    "A": "ALA",
+    "R": "ARG",
+    "N": "ASN",
+    "D": "ASP",
+    "C": "CYS",
+    "E": "GLU",
+    "Q": "GLN",
+    "G": "GLY",
+    "H": "HSD",
+    "I": "ILE",
+    "L": "LEU",
+    "K": "LYS",
+    "M": "MET",
+    "F": "PHE",
+    "P": "PRO",
+    "S": "SER",
+    "T": "THR",
+    "W": "TRP",
+    "Y": "TYR",
+    "V": "VAL"
 }
 for code, resi_name in list(ACID_CODE_TO_CHARMM.items()):
-    if code != 'G':  # D-glycine isn't real, it can't hurt you.
-        ACID_CODE_TO_CHARMM['d' + code] = 'D' + resi_name
+    if code != "G":  # D-glycine isn't real, it can't hurt you.
+        ACID_CODE_TO_CHARMM["d" + code] = "D" + resi_name
 
 CHARMM_TO_ACID_CODE = {
     resi_name: code for code, resi_name in ACID_CODE_TO_CHARMM.items()

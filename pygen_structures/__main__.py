@@ -95,7 +95,7 @@ def main(argv=sys.argv[1:]):
 
     name, segid = args.name, args.segid
     if args.use_charmm_names:
-        sequence = args.sequence.split('-')
+        sequence = args.sequence.split("-")
         mol = sequence_to_mol(sequence, rtf, patches, name, segid)
     else:
         histidine = args.histidine
@@ -116,8 +116,8 @@ def main(argv=sys.argv[1:]):
 
     output_prefix = args.output
     if output_prefix:
-        mol.to_pdb_file('{}.pdb'.format(output_prefix))
-        mol.to_psf_file('{}.psf'.format(output_prefix))
+        mol.to_pdb_file("{}.pdb".format(output_prefix))
+        mol.to_psf_file("{}.psf".format(output_prefix))
     else:
         print(mol.to_pdb_block())
 

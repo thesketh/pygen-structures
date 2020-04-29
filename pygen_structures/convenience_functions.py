@@ -33,7 +33,7 @@ def load_charmm_dir(
         dirs[:] = [d for d in dirs if d != "non_charmm"]
         for file_name in file_names:
             extension = os.path.splitext(file_name)[1]
-            split_name = file_name.split('_')
+            split_name = file_name.split("_")
             try:
                 version = split_name[1]
             except IndexError:
@@ -106,7 +106,7 @@ def pdb_to_mol(
     last_residue, residue_serial = None, 0
     old_res_to_new, coordinates = {}, {}
     rtf.residues["HIS"] = rtf.residues[default_histidine]
-    with open(pdb_path) as pdb_file:
+    with open(pdb_path, encoding="utf-8") as pdb_file:
         for line in pdb_file:
             if line[:6] == "COMPND":
                 name = line.split()[1]
@@ -205,7 +205,7 @@ def code_to_mol(
 
     """
     try:
-        first, sequence, last = sequence.split('-')
+        first, sequence, last = sequence.split("-")
         if patches is None:
             patches = {}
         patches[first] = ["FIRST"]
@@ -216,19 +216,19 @@ def code_to_mol(
 
     next_d = False
     for character in sequence:
-        if character == 'd':
+        if character == "d":
             next_d = True
             continue
 
         if next_d:
-            character = 'd' + character
+            character = "d" + character
             next_d = False
 
         charmm_res = ACID_CODE_TO_CHARMM[character]
-        if character == 'H':
+        if character == "H":
             charmm_res = default_histidine
-        elif character == 'dH':
-            charmm_res = 'D' + default_histidine
+        elif character == "dH":
+            charmm_res = "D" + default_histidine
         residue_names.append(charmm_res)
     return Molecule.from_sequence(
         residue_names, rtf, patches, name, segid
