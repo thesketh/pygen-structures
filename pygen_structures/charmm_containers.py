@@ -828,7 +828,7 @@ class CHARMMResidueTopologyFile:
         and ``last`` if True.
 
         """
-        with open(rtf_path, encoding="utf-8") as rtf_file:
+        with open(rtf_path, "r", encoding="utf-8") as rtf_file:
             contents = rtf_file.read()
         if os.path.splitext(rtf_path)[-1] == ".str":
             try:
@@ -941,7 +941,7 @@ class CHARMMParameterFile:
         :param prm_path: path to .prm/.str file
 
         """
-        with open(prm_path, encoding="utf-8") as prm_file:
+        with open(prm_path, "r", encoding="utf-8") as prm_file:
             contents = prm_file.read()
         if os.path.splitext(prm_path)[-1] == ".str":
             try:
