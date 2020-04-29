@@ -84,7 +84,7 @@ $ pygen-structures -v AdP -o AdP
 $
 ```
 
-A different CHARMM distribution can be loaded using the `-t` option, with the path to the folder. `pygen-structures` ships with the latest CHARMM distribution (July 2019) at the time of writing, with some modifications to correct the D-amino acid parameters ([these modifications are highlighted in the toppar README](pygen_structures/toppar/README.md)). The function which parses the folder will pick the latest versions of the parameter and topology files (36 over 27, 36m over 36), so if you plan on using an older version of the forcefield (this is not recommended) you will have to remove the newer versions and change the extensions to match the current conventions (.rtf, .prm).
+A different CHARMM distribution can be loaded using the `-t` option, with the path to the folder. `pygen-structures` ships with the latest CHARMM distribution (July 2019) at the time of writing, with some modifications to correct the D-amino acid parameters ([these modifications are highlighted in the toppar README](https://github.com/thesketh/pygen-structures/blob/master/pygen_structures/toppar/README.md)). The function which parses the folder will pick the latest versions of the parameter and topology files (36 over 27, 36m over 36), so if you plan on using an older version of the forcefield (this is not recommended) you will have to remove the newer versions and change the extensions to match the current conventions (.rtf, .prm).
 
 ## Library usage
 
@@ -92,4 +92,4 @@ Information about classes and functions for usage as a library can be found on [
 
 ## Contributing
 
-Contributions are welcome! [Please read our Code of Conduct.](CONTRIBUTING.md)
+Contributions are welcome! [Please read our Code of Conduct.](https://github.com/thesketh/pygen-structures/blob/master/CONTRIBUTING.md)
