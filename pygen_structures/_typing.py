@@ -4,8 +4,6 @@ package.
 
 These are not currently in use, but are in the roadmap.
 """
-from typing import Tuple, Union
-
 AtomName = str
 AtomType = str
 AtomPartialCharge = float
@@ -13,41 +11,41 @@ AtomIndex = int
 ResidueIndex = int
 ResiduePlaceholderIndex = int
 
-AtomID = Tuple[ResidueIndex, AtomName]
-AtomReference = Tuple[ResiduePlaceholderIndex, AtomName]
+AtomID = tuple[ResidueIndex, AtomName]
+AtomReference = tuple[ResiduePlaceholderIndex, AtomName]
 AtomData = [AtomName, AtomType, AtomPartialCharge]
 
-Position = Tuple[float, float, float]
+Position = tuple[float, float, float]
 
 # Molecular connections
-Bond = Tuple[AtomID, AtomID]
-BondPlaceholder = Tuple[AtomReference, AtomReference]
-BondDefinition = Tuple[AtomName, AtomName]
-IndexBond = Tuple[AtomIndex, AtomIndex]
+Bond = tuple[AtomID, AtomID]
+BondPlaceholder = tuple[AtomReference, AtomReference]
+BondDefinition = tuple[AtomName, AtomName]
+IndexBond = tuple[AtomIndex, AtomIndex]
 
-Angle = Tuple[AtomID, AtomID, AtomID]
-AnglePlaceholder = Tuple[AtomReference, AtomReference, AtomReference]
-AngleDefinition = Tuple[AtomName, AtomName, AtomName]
-IndexAngle = Tuple[AtomIndex, AtomIndex, AtomIndex]
+Angle = tuple[AtomID, AtomID, AtomID]
+AnglePlaceholder = tuple[AtomReference, AtomReference, AtomReference]
+AngleDefinition = tuple[AtomName, AtomName, AtomName]
+IndexAngle = tuple[AtomIndex, AtomIndex, AtomIndex]
 
-Dihedral = Tuple[AtomID, AtomID, AtomID, AtomID]
-DihedralPlaceholder = Tuple[
+Dihedral = tuple[AtomID, AtomID, AtomID, AtomID]
+DihedralPlaceholder = tuple[
     AtomReference, AtomReference, AtomReference, AtomReference
 ]
-DihedralDefinition = Tuple[AtomName, AtomName, AtomName, AtomName]
-IndexDihedral = Tuple[AtomIndex, AtomIndex, AtomIndex, AtomIndex]
+DihedralDefinition = tuple[AtomName, AtomName, AtomName, AtomName]
+IndexDihedral = tuple[AtomIndex, AtomIndex, AtomIndex, AtomIndex]
 
-Improper = Tuple[AtomID, AtomID, AtomID, AtomID]
-ImproperPlaceholder = Tuple[
+Improper = tuple[AtomID, AtomID, AtomID, AtomID]
+ImproperPlaceholder = tuple[
     AtomReference, AtomReference, AtomReference, AtomReference
 ]
-ImproperDefinition = Tuple[AtomName, AtomName, AtomName, AtomName]
-IndexImproper = Tuple[AtomIndex, AtomIndex, AtomIndex, AtomIndex]
+ImproperDefinition = tuple[AtomName, AtomName, AtomName, AtomName]
+IndexImproper = tuple[AtomIndex, AtomIndex, AtomIndex, AtomIndex]
 
-CrossMap = Tuple[
+CrossMap = tuple[
     AtomID, AtomID, AtomID, AtomID, AtomID, AtomID, AtomID, AtomID
 ]
-CrossMapPlaceholder = Tuple[
+CrossMapPlaceholder = tuple[
     AtomReference,
     AtomReference,
     AtomReference,
@@ -57,7 +55,7 @@ CrossMapPlaceholder = Tuple[
     AtomReference,
     AtomReference
 ]
-CrossMapDefinition = Tuple[
+CrossMapDefinition = tuple[
     AtomName,
     AtomName,
     AtomName,
@@ -67,7 +65,7 @@ CrossMapDefinition = Tuple[
     AtomName,
     AtomName
 ]
-IndexCrossMap = Tuple[
+IndexCrossMap = tuple[
     AtomIndex,
     AtomIndex,
     AtomIndex,
@@ -78,31 +76,7 @@ IndexCrossMap = Tuple[
     AtomIndex,
 ]
 # Generic connections
-Connection = Union[
-    Bond,
-    Angle,
-    Dihedral,
-    Improper,
-    CrossMap
-]
-ConnectionPlaceholder = Union[
-    BondPlaceholder,
-    AnglePlaceholder,
-    DihedralPlaceholder,
-    ImproperPlaceholder,
-    CrossMapPlaceholder
-]
-ConnectionDefinition = Union[
-    BondDefinition,
-    AngleDefinition,
-    DihedralDefinition,
-    ImproperDefinition,
-    CrossMapDefinition
-]
-IndexConnection = Union[
-    IndexBond,
-    IndexAngle,
-    IndexDihedral,
-    IndexImproper,
-    IndexCrossMap
-]
+Connection = Bond | Angle | Dihedral | Improper | CrossMap
+ConnectionPlaceholder = BondPlaceholder | AnglePlaceholder | DihedralPlaceholder | ImproperPlaceholder | CrossMapPlaceholder
+ConnectionDefinition = BondDefinition | AngleDefinition | DihedralDefinition | ImproperDefinition | CrossMapDefinition
+IndexConnection = IndexBond | IndexAngle | IndexDihedral | IndexImproper | IndexCrossMap

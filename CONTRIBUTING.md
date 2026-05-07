@@ -10,7 +10,7 @@ with the project.
    build.
 2. Update the README.md with details of changes to the interface, this includes new environment
    variables, exposed ports, useful file locations and container parameters.
-3. Increase the version numbers in `pygen_structures/version.py`.
+3. Increase the version number in `pyproject.toml`.
    The versioning scheme we use is [SemVer](http://semver.org/).
 4. Request merge from the lead author
 

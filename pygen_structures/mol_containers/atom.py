@@ -58,7 +58,7 @@ class Atom:
         occupancy: float = 1.0,
         beta_factor: float = 0.0,
         segment_id: str = "0",
-        element_symbol: (str, None) = None,
+        element_symbol: str | None = None,
         formal_charge: int = 0,
         atom_type: str = "",
         partial_charge: float = 0.0,

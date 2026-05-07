@@ -5,7 +5,7 @@
 
 `pygen-structures` (pigeon structures) is a Python utility which allows for the generation of 3 dimensional molecular structures which can be used in molecular dynamics or Monte Carlo simulations. Molecules are generated from a list of residues and patches in the format of the CHARMM forcefield, and can be written out as valid PSF and PDB files. The package can be used as a command line utility, or as a Python library.
 
-`pygen-structures` can be installed using _pip_ (`pip install pygen-structures`), but relies upon _RDKit_, which is not pip-installable. [RDKit can be installed in many ways](https://www.rdkit.org/docs/Install.html), but the easiest way is to use the [_conda_ package manager](https://docs.conda.io/projects/conda/en/latest/). For full installation instructions, see the 'Installation' section of the readme. Python 3.6 and 3.7 are supported. To run the tests, [_pytest_](https://docs.pytest.org/en/latest/) and [_OpenMM_](http://openmm.org/) are required.
+`pygen-structures` can be installed using _pip_ (`pip install pygen-structures`), but relies upon _RDKit_, which is not pip-installable. [RDKit can be installed in many ways](https://www.rdkit.org/docs/Install.html), but the easiest way is to use the [_conda_ package manager](https://docs.conda.io/projects/conda/en/latest/). For full installation instructions, see the 'Installation' section of the readme. Python 3.9 through 3.14 are supported. RDKit is now pip-installable (`pip install rdkit`), so a conda environment is no longer required. To run the tests, [_pytest_](https://docs.pytest.org/en/latest/) and [_OpenMM_](http://openmm.org/) are required.
 
 In essence, `pygen-structures` aims (eventually) to be a complete [_psfgen_](https://www.ks.uiuc.edu/Research/vmd/plugins/psfgen/) replacement with more autonomous functionality. At present, structures for small molecules can be generated. This should make it significantly easier to perform combinatorial searches on particular sequence lengths and linkages. This requires no manual intervention provided the molecules of interest are reasonably small (small enough that embedding coordinates is possible, and that the secondary structure is not vitally important) and the residue/patch definitions already exist in the forcefield.
 
@@ -14,13 +14,13 @@ In essence, `pygen-structures` aims (eventually) to be a complete [_psfgen_](htt
 There are other ways to install the required dependencies, but the easiest way by far is to use conda. Instructions, include the installation of test dependencies, are outlined below:
 
 1. [Install the conda package manager](https://docs.anaconda.com/anaconda/install/). Make sure the conda executable is in your PATH.
-2. Set up a conda environment with the relevant dependencies (or install them in your base distribution). This can be done with the following command: `conda create -n pygen-structures -c rdkit -c omnia 'python>=3.6' 'rdkit>=2018.3' numpy 'openmm>=7.4' pytest`.
+2. Set up a conda environment with the relevant dependencies (or install them in your base distribution). This can be done with the following command: `conda create -n pygen-structures -c conda-forge 'python>=3.9' 'rdkit>=2018.3' numpy 'openmm>=7.4' pytest`.
 3. Activate the conda environment: `conda activate pygen-structures`
 4. Use pip to install `pygen-structures` in this environment: `pip install pygen-structures`.
 5. Installation complete! You will have to activate this environment using `conda activate pygen-structures` each time you want to use it.
 6. Test the installation: `pytest --pyargs pygen_structures`
 
-To install only the runtime dependencies, use the following command in step 2: `conda create -n pygen-structures -c rdkit 'python>=3.6' 'rdkit>=2018.3' numpy`
+To install only the runtime dependencies, use the following command in step 2: `conda create -n pygen-structures -c conda-forge 'python>=3.9' 'rdkit>=2018.3' numpy`
 
 ## Command line usage
 
@@ -93,3 +93,13 @@ Information about classes and functions for usage as a library can be found on [
 ## Contributing
 
 Contributions are welcome! [Please read our Code of Conduct.](https://github.com/thesketh/pygen-structures/blob/master/CONTRIBUTING.md)
+
+## Changelog
+
+### 0.3.0
+
+- Packaging modernisation (no behaviour changes).
+- Migrated `setup.py` to PEP 517/518 `pyproject.toml`.
+- Replaced removed-from-setuptools `pkg_resources` with stdlib `importlib.resources`.
+- Updated type annotations to PEP 604 (`X | None`) and PEP 585 (`list`, `dict`, `tuple`).
+- Dropped Python 3.6/3.7 support; now supports Python 3.9 through 3.14.

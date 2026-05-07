@@ -3,7 +3,6 @@ This module contains convenience functions which are likely to be the
 main way users interact with the code.
 """
 import os
-from typing import Dict, Tuple, List
 import warnings
 
 from pygen_structures._functions_const import (
@@ -17,7 +16,7 @@ from pygen_structures.charmm_containers import (
 
 def load_charmm_dir(
     directory_root: str = TOPPAR_DIRECTORY
-) -> (CHARMMResidueTopologyFile, CHARMMParameterFile):
+) -> tuple[CHARMMResidueTopologyFile, CHARMMParameterFile]:
     """
     Scans a CHARMM toppar folder and reads in the rtf, prm and str
     files to a CHARMMResidueTopologyFile and a CHARMMParameterFile.
@@ -69,10 +68,10 @@ def load_charmm_dir(
 def pdb_to_mol(
         pdb_path: str,
         rtf: CHARMMResidueTopologyFile,
-        patches: (Dict[str, Tuple[(int, str)]], None) = None,
+        patches: dict[str, tuple[(int, str)]] | None = None,
         default_histidine: str = "HSE",
         kept_chain: str = "A",
-        segment_name: (str, None) = None,
+        segment_name: str | None = None,
 ) -> Molecule:
     """
     Generate a Molecule from a PDB file. PDB files are assumed to
@@ -150,11 +149,11 @@ def pdb_to_mol(
 
 
 def sequence_to_mol(
-    sequence: List[str],
+    sequence: list[str],
     rtf: CHARMMResidueTopologyFile,
-    patches: (Dict[str, List[int]], None) = None,
-    name: (str, None) = None,
-    segid: (str, None) = None,
+    patches: dict[str, list[int]] | None = None,
+    name: str | None = None,
+    segid: str | None = None,
 ) -> Molecule:
     """
     A function for the lazy. Calls ``Molecule.from_sequence`` with the
@@ -179,9 +178,9 @@ def sequence_to_mol(
 def code_to_mol(
     sequence: str,
     rtf: CHARMMResidueTopologyFile,
-    patches: (Dict[str, List[int]], None) = None,
-    name: (str, None) = None,
-    segid: (str, None) = None,
+    patches: dict[str, list[int]] | None = None,
+    name: str | None = None,
+    segid: str | None = None,
     default_histidine="HSE"
 ) -> Molecule:
     """

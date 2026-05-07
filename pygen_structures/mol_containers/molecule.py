@@ -8,15 +8,17 @@ indices of the residues they are to be applied to (or "FIRST"/"LAST").
 Manipulation of 3D coordinates is performed in the `Structure` class
 so that 3D functionality can be applied to residue objects.
 """
+
 from pygen_structures.charmm_containers import *
 from pygen_structures._functions_const import *
-from pygen_structures.version import version
+from importlib.metadata import version as _pkg_version
+
+version = _pkg_version("pygen-structures")
 from pygen_structures.mol_containers.atom import Atom
 from pygen_structures.mol_containers.structure import Structure
 
 import numpy as np
 import warnings
-from typing import Tuple, List, Dict
 
 
 class Molecule:
@@ -51,19 +53,16 @@ class Molecule:
     :param _finalized: ``True`` if ``Molecule.finalize()`` has been called.
 
     """
+
     def __init__(
         self,
         name: str = "Unset",
-        residues: (list, None) = None,
-        topology: (CHARMMResidueTopologyFile, None) = None,
-        patches: (Dict[str, List[int]], None) = None,
-        segment: (str, None) = None,
-        fixed_atoms: (
-                Dict[
-                    Tuple[int, str],
-                    Tuple[float, float, float]
-                ], None) = None,
-        use_etkdg: bool = True
+        residues: list | None = None,
+        topology: CHARMMResidueTopologyFile | None = None,
+        patches: dict[str, list[int]] | None = None,
+        segment: str | None = None,
+        fixed_atoms: dict[tuple[int, str], tuple[float, float, float]] | None = None,
+        use_etkdg: bool = True,
     ):
         self.name = name
         self.residues = residues if residues else list()
@@ -72,22 +71,20 @@ class Molecule:
 
         self.segment = segment if segment else "U"
         if len(self.segment) > 4:
-            err = (
-                "Segment {} is longer than 4 characters and will be truncated."
-            )
+            err = "Segment {} is longer than 4 characters and will be truncated."
             warnings.warn(err.format(self.segment))
 
         self.fixed_atoms = fixed_atoms if fixed_atoms else {}
         self.use_etkdg = use_etkdg
 
         # Set during finalization
-        self.atoms: (List[Atom], None) = None
-        self.impropers: (List[Tuple[int, ...]], None) = None
-        self.cross_maps: (List[Tuple[int, ...]], None) = None
+        self.atoms: list[Atom] | None = None
+        self.impropers: list[tuple[int, ...]] | None = None
+        self.cross_maps: list[tuple[int, ...]] | None = None
         self.topology_files = set()
 
-        self._structure: (Structure, None) = None
-        self._id_to_index: (Dict[str, int], None) = None
+        self._structure: Structure | None = None
+        self._id_to_index: dict[str, int] | None = None
         self._finalized: bool = False
 
     def finalize(self) -> None:
@@ -159,6 +156,7 @@ class Molecule:
                     atom_name=atom_name,
                     residue_name=residue.name,
                     residue_number=residue.index + 1,
+                    chain="A",
                     segment_id=self.segment,
                     atom_type=atom_type,
                     partial_charge=charge,
@@ -223,11 +221,8 @@ class Molecule:
 
         bonds, improper_ics = [], {}
         for residue in self.residues:
-            for (atom_id_x, atom_id_y) in residue.bonds:
-                bond = (
-                    self._id_to_index[atom_id_x],
-                    self._id_to_index[atom_id_y]
-                )
+            for atom_id_x, atom_id_y in residue.bonds:
+                bond = (self._id_to_index[atom_id_x], self._id_to_index[atom_id_y])
                 bonds.append(bond)
             for ic in residue.ics:
                 res_index, atom_name = ic[2]
@@ -268,7 +263,7 @@ class Molecule:
     def get_adjacency_matrix(self) -> np.ndarray:
         return self._structure.adjacency_matrix
 
-    def get_conect_records(self) -> List[str]:
+    def get_conect_records(self) -> list[str]:
         """
         Build the PDB CONECT records from the adjacency matrix.
         """
@@ -333,10 +328,7 @@ class Molecule:
         if not self._finalized:
             raise ValueError("Molecule not finalized")
 
-        def format_psf_block(
-            data: List[Tuple[int, ...]],
-            n_per_line: int
-        ) -> str:
+        def format_psf_block(data: list[tuple[int, ...]], n_per_line: int) -> str:
             try:
                 n_per_item = len(data[0])
             except (ValueError, IndexError, AttributeError):
@@ -357,9 +349,7 @@ class Molecule:
 
         doc_title = ["PSF EXT CMAP XPLOR", ""]
         header_records = [
-            "* Generated procedurally by pygen-structures v{}".format(
-                version
-            ),
+            "* Generated procedurally by pygen-structures v{}".format(version),
             "* Molecule: {}".format(self.name),
             "* Topology files used:",
         ]
@@ -456,11 +446,11 @@ class Molecule:
     @classmethod
     def from_sequence(
         cls,
-        sequence: List[str],
+        sequence: list[str],
         topology: CHARMMResidueTopologyFile,
-        patches:  (Dict[str, List[int]], None) = None,
-        name: (str, None) = None,
-        segid: (str, None) = None
+        patches: dict[str, list[int]] | None = None,
+        name: str | None = None,
+        segid: str | None = None,
     ):
         """
         Create the Molecule instance from a list of residues, a
@@ -484,10 +474,8 @@ class Molecule:
                     name.append(CHARMM_TO_ACID_CODE[charmm_name])
                 except KeyError:
                     name.append("-{}-".format(charmm_name))
-            name = ''.join(name)
-        instance = cls(
-            name, patches=patches, topology=topology, segment=segid
-        )
+            name = "".join(name)
+        instance = cls(name, patches=patches, topology=topology, segment=segid)
 
         for residue_index, residue_name in enumerate(sequence):
             residue_definition = topology.residues[residue_name]

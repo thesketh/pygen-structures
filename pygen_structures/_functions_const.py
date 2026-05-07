@@ -1,20 +1,18 @@
-from typing import Iterable, Tuple, List
-import pkg_resources
+from typing import Iterable
+from importlib.resources import files
 
 from rdkit import Chem
 import numpy as np
 
-IndexCollection = List[Tuple[int, ...]]
+IndexCollection = list[tuple[int, ...]]
 
-TOPPAR_DIRECTORY = pkg_resources.resource_filename(
-    "pygen_structures", "toppar"
-)
+TOPPAR_DIRECTORY = str(files("pygen_structures") / "toppar")
 
 
 def adjacency_to_dof(
         adjacency_matrix: np.ndarray,
         sort: bool = True
-) -> Tuple[IndexCollection, IndexCollection, IndexCollection]:
+) -> tuple[IndexCollection, IndexCollection, IndexCollection]:
     """ Given an adjacency matrix, return the internal degrees of
         freedom of the system. This should work on lists of lists
         or numpy arrays.

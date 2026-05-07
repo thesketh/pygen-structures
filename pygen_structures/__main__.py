@@ -2,7 +2,10 @@
 import sys
 from argparse import ArgumentParser
 from pygen_structures import load_charmm_dir, sequence_to_mol, code_to_mol
-from pygen_structures.version import version, year
+from importlib.metadata import version as _pkg_version
+
+version = _pkg_version("pygen-structures")
+year = "2026"
 
 
 def parse_args(argv):

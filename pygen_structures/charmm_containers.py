@@ -5,8 +5,6 @@ data.
 # from __future__ import annotations
 import re
 import os
-from typing import Tuple, List, Dict, Set, Union
-
 from pygen_structures.mol_containers.atom import Atom
 from pygen_structures.mol_containers.structure import Structure
 from rdkit import Chem
@@ -22,12 +20,12 @@ class CHARMMResidueData:
     def __init__(
         self,
         name: str = "Unset",
-        atoms: (list, None) = None,
-        bonds: (list, None) = None,
-        impropers: (list, None) = None,
-        cross_maps: (list, None) = None,
-        ics: (list, None) = None,
-        rtf_file_name: (str, None) = None,
+        atoms: list | None = None,
+        bonds: list | None = None,
+        impropers: list | None = None,
+        cross_maps: list | None = None,
+        ics: list | None = None,
+        rtf_file_name: str | None = None,
     ):
         self.name = name
         self.atoms = atoms if atoms else list()
@@ -73,14 +71,14 @@ class CHARMMResidueDefinition(CHARMMResidueData):
     def __init__(
         self,
         name: str = "Unset",
-        atoms: (list, None) = None,
-        bonds: (list, None) = None,
-        impropers: (list, None) = None,
-        cross_maps: (list, None) = None,
-        ics: (list, None) = None,
-        rtf_file_name: (str, None) = None,
-        first: (str, None) = None,
-        last: (str, None) = None,
+        atoms: list | None = None,
+        bonds: list | None = None,
+        impropers: list | None = None,
+        cross_maps: list | None = None,
+        ics: list | None = None,
+        rtf_file_name: str | None = None,
+        first: str | None = None,
+        last: str | None = None,
     ):
         super().__init__(
             name,
@@ -169,8 +167,8 @@ class CHARMMResidueDefinition(CHARMMResidueData):
     def to_residue(
             self,
             index: int,
-            last_index: (int, None) = None,
-            next_index: (int, None) = None
+            last_index: int | None = None,
+            next_index: int | None = None
         ):  # -> CHARMMResidue:
         """
         Generate a ``CHARMMResidue`` from the residue definition.
@@ -273,14 +271,14 @@ class CHARMMResidue(CHARMMResidueData):
     def __init__(
         self,
         name: str = "Unset",
-        atoms: (list, None) = None,
-        bonds: (list, None) = None,
-        impropers: (list, None) = None,
-        cross_maps: (list, None) = None,
-        ics: (list, None) = None,
-        rtf_file_name: (str, None) = None,
-        first: (str, None) = None,
-        last: (str, None) = None,
+        atoms: list | None = None,
+        bonds: list | None = None,
+        impropers: list | None = None,
+        cross_maps: list | None = None,
+        ics: list | None = None,
+        rtf_file_name: str | None = None,
+        first: str | None = None,
+        last: str | None = None,
         index: int = 0,
     ):
         super().__init__(
@@ -296,8 +294,8 @@ class CHARMMResidue(CHARMMResidueData):
             cls,
             residue_definition: CHARMMResidueDefinition,
             index: int,
-            last_index: (int, None) = None,
-            next_index: (int, None) = None,
+            last_index: int | None = None,
+            next_index: int | None = None,
     ):
         """
         Generate a ``CHARMMResidue`` from the residue definition.\
@@ -319,7 +317,7 @@ class CHARMMResidue(CHARMMResidueData):
         if next_index is None:
             next_index = index + 1
 
-        def name_to_id(raw_atom_name) -> (int, str):
+        def name_to_id(raw_atom_name) -> tuple[int, str]:
             first_char = raw_atom_name[0]
             re_add_star = False
             if first_char == "*":
@@ -349,19 +347,19 @@ class CHARMMResidue(CHARMMResidueData):
             index=index,
         )
         for bond_definition in residue_definition.bonds:
-            bond: List[Tuple[int, str], ...] = list()
+            bond: list[tuple[int, str], ...] = list()
             for atom_name in bond_definition:
                 atom_id = name_to_id(atom_name)
                 bond.append(atom_id)
             instance.bonds.append(tuple(bond))
         for improper_definition in residue_definition.impropers:
-            improper: List[Tuple[int, str], ...] = list()
+            improper: list[tuple[int, str], ...] = list()
             for atom_name in improper_definition:
                 atom_id = name_to_id(atom_name)
                 improper.append(atom_id)
             instance.impropers.append(tuple(improper))
         for cross_map_definition in residue_definition.cross_maps:
-            cross_map: List[Tuple[int, str], ...] = list()
+            cross_map: list[tuple[int, str], ...] = list()
             for atom_name in cross_map_definition:
                 atom_id = name_to_id(atom_name)
                 cross_map.append(atom_id)
@@ -431,13 +429,13 @@ class CHARMMPatchResidueDefinition(CHARMMResidueData):
     def __init__(
         self,
         name: str = "Unset",
-        atoms: (list, None) = None,
-        bonds: (list, None) = None,
-        impropers: (list, None) = None,
-        cross_maps: (list, None) = None,
-        ics: (list, None) = None,
-        rtf_file_name: (str, None) = None,
-        deletions: (set, None) = None,
+        atoms: list | None = None,
+        bonds: list | None = None,
+        impropers: list | None = None,
+        cross_maps: list | None = None,
+        ics: list | None = None,
+        rtf_file_name: str | None = None,
+        deletions: set | None = None,
         n_residues: int = 1,
     ):
         super().__init__(
@@ -458,7 +456,7 @@ class CHARMMPatchResidueDefinition(CHARMMResidueData):
         """
         n_residues = 1
 
-        def name_to_reference(raw_atom_name: str) -> Tuple[int, str]:
+        def name_to_reference(raw_atom_name: str) -> tuple[int, str]:
             """
             As patches can be applied to multiple residues, it's
             important to reflect this in the way we store data.
@@ -719,7 +717,7 @@ class CHARMMPatchResidueDefinition(CHARMMResidueData):
                     del residue.ics[deletion_index]
                 residue.ics.append(ic)
 
-    def is_applicable_to(self, residue) -> Union[None, List[int]]:
+    def is_applicable_to(self, residue) -> None | list[int]:
         """
         Work out the positions where the patch can be applied to the
         residue. If the patch can be applied, return a list of
@@ -770,12 +768,12 @@ class CHARMMResidueTopologyFile:
     """
     def __init__(
         self,
-        file_name: (str, None) = None,
-        residues: (dict, None) = None,
-        patches: (dict, None) = None,
-        masses: (dict, None) = None,
-        first: (str, None) = None,
-        last: (str, None) = None,
+        file_name: str | None = None,
+        residues: dict | None = None,
+        patches: dict | None = None,
+        masses: dict | None = None,
+        first: str | None = None,
+        last: str | None = None,
     ):
         self.file_name = file_name
         self.residues = residues if residues else {}
@@ -922,11 +920,11 @@ class CHARMMParameterFile:
     """
     def __init__(
         self,
-        bonds: (set, None) = None,
-        angles: (set, None) = None,
-        dihedrals: (set, None) = None,
-        impropers: (set, None) = None,
-        cross_maps: (set, None) = None,
+        bonds: set | None = None,
+        angles: set | None = None,
+        dihedrals: set | None = None,
+        impropers: set | None = None,
+        cross_maps: set | None = None,
     ):
         self.bonds = bonds if bonds else set()
         self.angles = angles if angles else set()
@@ -1004,7 +1002,7 @@ class CHARMMParameterFile:
         instance.read_file(prm_path)
         return instance
 
-    def get_unmatched(self, molecule) -> Dict[str, Set[Tuple[str]]]:
+    def get_unmatched(self, molecule) -> dict[str, set[tuple[str]]]:
         """
         Check a finalized ``Molecule`` to verify that all the parameters
         in the ``CHARMMParameterFile`` exist for that molecule, returning

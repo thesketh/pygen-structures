@@ -6,7 +6,6 @@ a fragment.
 3D coordinates can be generated, and atoms can be fixed.
 """
 
-from typing import List, Tuple, Dict
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Geometry import Point3D
@@ -27,10 +26,10 @@ class Structure:
     """
     def __init__(
             self,
-            atoms: List[Atom],
-            bonds: List[Tuple[int, int]],
-            improper_ics: (Dict[Tuple[int, ...], float], None) = None,
-            fixed_atoms: (List[int], None) = None,
+            atoms: list[Atom],
+            bonds: list[tuple[int, int]],
+            improper_ics: dict[tuple[int, ...], float] | None = None,
+            fixed_atoms: list[int] | None = None,
             set_charges: bool = True,
             use_etkdg: bool = True,
     ):
@@ -43,7 +42,7 @@ class Structure:
         if not improper_ics:
             improper_ics = dict()
         self.improper_ics = improper_ics
-        self.mol: (None, Chem.RWMol) = None
+        self.mol: None | Chem.RWMol = None
         self.use_etkdg = use_etkdg
 
         self.set_formal_charges()
@@ -186,7 +185,7 @@ class Structure:
         atoms after their parent heavy atom. This is probably an easier
         layout for a person to follow, should they look at the file.
         """
-        new_atom_order: List[int] = []
+        new_atom_order: list[int] = []
         for rd_atom in self.mol.GetAtoms():
             if rd_atom.GetSymbol() == "H":
                 continue
